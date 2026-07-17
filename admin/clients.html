@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clients — ALFA SPOT Admin</title>
+  <link rel="stylesheet" href="css/admin.css"/>
+</head>
+<body>
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo"><h2>⚡ ALFA SPOT</h2><span>Admin Panel</span></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Main</div>
+      <a href="dashboard.html" class="nav-item"><span class="icon">📊</span> Dashboard</a>
+      <a href="clients.html"   class="nav-item active"><span class="icon">👥</span> Clients</a>
+      <a href="add-client.html" class="nav-item"><span class="icon">➕</span> Add Client</a>
+      <div class="nav-section">Team</div>
+      <a href="team.html"        class="nav-item"><span class="icon">🧑‍💼</span> Team Members</a>
+      <a href="commissions.html" class="nav-item"><span class="icon">💰</span> Commissions</a>
+      <div class="nav-section">Website</div>
+      <a href="../index.html" target="_blank" class="nav-item"><span class="icon">🌐</span> View Website</a>
+      <a href="../portfolio.html" target="_blank" class="nav-item"><span class="icon">🎨</span> Portfolio</a>
+      <a href="../packages.html"  target="_blank" class="nav-item"><span class="icon">💎</span> Packages</a>
+    </nav>
+    <div class="sidebar-footer"><div class="logout-btn" onclick="logout()"><span>🚪</span> Logout</div></div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <h1>Clients</h1>
+        <p id="countStr">Loading...</p>
+      </div>
+      <div class="topbar-right">
+        <a href="add-client.html" class="btn btn-gold">➕ Add Client</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>All Clients</h3>
+        <div class="search-bar">
+          <input  class="search-input" id="search"    placeholder="Search name, company, email..." oninput="render()"/>
+          <select class="filter-sel"   id="fStatus"   onchange="render()">
+            <option value="">All Status</option>
+            <option value="active">Active</option>
+            <option value="soon">Expiring Soon</option>
+            <option value="expired">Expired</option>
+          </select>
+          <select class="filter-sel"   id="fPackage"  onchange="render()">
+            <option value="">All Packages</option>
+            <option value="Starter">Starter</option>
+            <option value="Growth">Growth</option>
+            <option value="Pro">Pro</option>
+            <option value="Custom">Custom</option>
+          </select>
+          <select class="filter-sel"   id="fPayment"  onchange="render()">
+            <option value="">All Payments</option>
+            <option value="paid">Paid</option>
+            <option value="partial">Partial</option>
+            <option value="pending">Pending</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Client</th>
+              <th>Package</th>
+              <th>Services</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Days Left</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="clientsTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal-wrap" id="delModal">
+  <div class="modal">
+    <h3>Delete Client?</h3>
+    <p>This will permanently delete the client and all their data. This cannot be undone.</p>
+    <div class="modal-btns">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/db.js"></script>
+<script>
+guardAuth();
+
+let deleteId = null;
+let allClients = [];
+
+function logout() { localStorage.removeItem('as_loggedIn'); window.location.href='login.html'; }
+
+// read URL filter
+const urlP = new URLSearchParams(window.location.search);
+if (urlP.get('filter')) document.getElementById('fStatus').value = urlP.get('filter');
+
+const pkgBadge = { Starter:'badge-starter', Growth:'badge-growth', Pro:'badge-pro', Custom:'badge-custom' };
+const payBadge = { paid:'badge-paid', partial:'badge-partial', pending:'badge-pending' };
+const stsBadge = { active:'badge-active', soon:'badge-soon', expired:'badge-expired' };
+
+async function loadClients() {
+  allClients = await getClients();
+  render();
+}
+
+function render() {
+  const q   = document.getElementById('search').value.toLowerCase();
+  const fSt = document.getElementById('fStatus').value;
+  const fPk = document.getElementById('fPackage').value;
+  const fPy = document.getElementById('fPayment').value;
+
+  let list = allClients;
+  if (q)   list = list.filter(c => (c.name+c.company+c.email+c.phone).toLowerCase().includes(q));
+  if (fSt) list = list.filter(c => getSubStatus(c.endDate) === fSt);
+  if (fPk) list = list.filter(c => c.package === fPk);
+  if (fPy) list = list.filter(c => c.paymentStatus === fPy);
+
+  document.getElementById('countStr').textContent = `${list.length} client${list.length!==1?'s':''} found`;
+
+  const tbody = document.getElementById('clientsTable');
+  if (!list.length) {
+    tbody.innerHTML = `<tr><td colspan="10"><div class="empty-state"><div class="icon">👥</div><p>No clients found.</p></div></td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = list.map((c,i) => {
+    const st = getSubStatus(c.endDate);
+    const d  = daysUntil(c.endDate);
+    const dl = d < 0
+      ? `<span style="color:var(--danger);font-weight:600">${Math.abs(d)}d ago</span>`
+      : d === 0
+      ? `<span style="color:var(--warning);font-weight:600">Today</span>`
+      : `<span style="color:${d<=7?'var(--warning)':'var(--success)'};font-weight:600">${d}d</span>`;
+
+    const svcs = (c.services||[]).slice(0,2).join(', ') + (c.services?.length > 2 ? ` +${c.services.length-2}` : '');
+
+    return `<tr>
+      <td style="color:var(--muted);font-size:12px">${i+1}</td>
+      <td>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--navy);flex-shrink:0">${initials(c.name)}</div>
+          <div>
+            <div style="font-weight:600;font-size:13.5px">${c.name}</div>
+            <div style="font-size:11px;color:var(--muted)">${c.company||'—'}</div>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge ${pkgBadge[c.package]||''}">${c.package}</span></td>
+      <td style="font-size:12px;color:var(--muted);max-width:160px">${svcs||'—'}</td>
+      <td style="font-size:12px;color:var(--muted)">${formatDate(c.startDate)}</td>
+      <td style="font-size:12px;color:var(--muted)">${formatDate(c.endDate)}</td>
+      <td>${dl}</td>
+      <td><span class="badge ${payBadge[c.paymentStatus]||''}">${c.paymentStatus}</span></td>
+      <td><span class="badge ${stsBadge[st]}">${st}</span></td>
+      <td>
+        <div style="display:flex;gap:6px">
+          <a href="client.html?id=${c.id}" class="btn btn-ghost btn-sm">👁 View</a>
+          <a href="add-client.html?id=${c.id}" class="btn btn-info btn-sm">✏️</a>
+          <button class="btn btn-danger btn-sm" onclick="openDelete('${c.id}')">🗑️</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function openDelete(id) { deleteId = id; document.getElementById('delModal').classList.add('open'); }
+function closeModal()   { document.getElementById('delModal').classList.remove('open'); deleteId = null; }
+async function confirmDelete(){
+  if (deleteId) {
+    await deleteClient(deleteId);
+    closeModal();
+    await loadClients();
+  }
+}
+
+loadClients();
+</script>
+</body>
+</html>

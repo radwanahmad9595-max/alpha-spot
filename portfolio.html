@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="ALFA SPOT Portfolio — Our Creative Work & Projects"/>
+  <title>Portfolio — ALFA SPOT</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/portfolio.css"/>
+  <link rel="icon" href="assets/logo-dark.png" type="image/png"/>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-logo">
+    <img src="assets/logo-dark.png" alt="ALFA SPOT" onerror="this.style.display='none'"/>
+    <span>ALFA SPOT</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html"       data-en="Home"      data-ar="الرئيسية">Home</a></li>
+    <li><a href="index.html#services" data-en="Services"  data-ar="خدماتنا">Services</a></li>
+    <li><a href="portfolio.html" class="active" data-en="Portfolio" data-ar="أعمالنا">Portfolio</a></li>
+    <li><a href="packages.html"  data-en="Packages"  data-ar="الباقات">Packages</a></li>
+    <li><a href="index.html#contact" data-en="Contact"   data-ar="تواصل">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">عربي</button>
+    <a href="index.html#contact" class="btn-nav" data-en="Get Started" data-ar="ابدأ الآن">Get Started</a>
+  </div>
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="port-hero">
+  <div class="port-hero-bg"></div>
+  <div class="port-hero-content">
+    <span class="section-tag" data-en="Our Work" data-ar="أعمالنا">Our Work</span>
+    <h1 class="section-title" data-en="Creative <span>Portfolio</span>" data-ar="معرض <span>أعمالنا</span>">Creative <span>Portfolio</span></h1>
+    <div class="gold-line" style="margin:20px auto"></div>
+    <p data-en="Every project tells a story. Explore our latest work across branding, social media, photography and more."
+       data-ar="كل مشروع يحكي قصة. استكشف أحدث أعمالنا في الهوية البصرية والسوشيال ميديا والتصوير وأكثر.">
+      Every project tells a story. Explore our latest work across branding, social media, photography and more.
+    </p>
+  </div>
+</section>
+
+<!-- ══ FILTER TABS ══ -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all"         data-en="All Work"    data-ar="الكل">All Work</button>
+  <button class="filter-btn" data-filter="brand"              data-en="Branding"    data-ar="الهوية البصرية">Branding</button>
+  <button class="filter-btn" data-filter="social"             data-en="Social Media" data-ar="السوشيال ميديا">Social Media</button>
+  <button class="filter-btn" data-filter="photo"              data-en="Photography" data-ar="التصوير">Photography</button>
+  <button class="filter-btn" data-filter="motion"             data-en="Motion"      data-ar="الموشن">Motion</button>
+  <button class="filter-btn" data-filter="reels"              data-en="Reels"       data-ar="الريلز">Reels</button>
+</div>
+
+<!-- ══ PORTFOLIO GRID ══ -->
+<section class="port-section">
+  <div class="port-grid" id="portGrid">
+
+    <!-- ITEM 1 -->
+    <div class="port-item fade-up" data-cat="brand">
+      <div class="port-img-wrap">
+        <div class="port-placeholder" style="background:linear-gradient(135deg,#1a0a2e,#3d1a6e)">
+          <span>✨</span>
+        </div>
+        <div class="port-overlay">
+          <span class="port-cat" data-en="Branding" data-ar="الهوية البصرية">Branding</span>
+          <h3 data-en="Luxury Brand Identity" data-ar="هوية بصرية فاخرة">Luxury Brand Identity</h3>
+          <p data-en="Full brand identity package including logo, colors, and guidelines."
+             data-ar="حزمة هوية بصرية متكاملة تشمل الشعار والألوان والدليل.">
+            Full brand identity package including logo, colors, and guidelines.
+          </p>
+          <button class="port-btn" onclick="openModal(0)" data-en="View Project" data-ar="شاهد المشروع">View Project</button>
+        </div>
+      </div>
+      <div class="port-info">
+        <h4 data-en="Luxury Brand Identity" data-ar="هوية بصرية فاخرة">Luxury Brand Identity</h4>
+        <span data-en="Branding" data-ar="هوية">Branding</span>
+      </div>
+    </div>
+
+    <!-- ITEM 2 -->
+    <div class="port-item fade-up" data-cat="social">
+      <div class="port-img-wrap">
+        <div class="port-placeholder" style="background:linear-gradient(135deg,#0d2137,#1a4a7a)">
+          <span>📱</span>
+        </div>
+        <div class="port-overlay">
+          <span class="port-cat" data-en="Social Media" data-ar="سوشيال ميديا">Social Media</span>
+          <h3 data-en="Restaurant Social Campaign" data-ar="حملة سوشيال لمطعم">Restaurant Social Campaign</h3>
+          <p data-en="3-month social media management with 200% engagement increase."
+             data-ar="إدارة سوشيال ميديا لمدة 3 أشهر مع زيادة تفاعل 200%.">
+            3-month social media management with 200% engagement increase.
+          </p>
+          <button class="port-btn" onclick="openModal(1)" data-en="View Project" data-ar="شاهد المشروع">View Project</button>
+        </div>
+      </div>
+      <div class="port-info">
+        <h4 data-en="Restaurant Social Campaign" data-ar="حملة سوشيال لمطعم">Restaurant Social Campaign</h4>
+        <span data-en="Social Media" data-ar="سوشيال ميديا">Social Media</span>
+      </div>
+    </div>
+
+    <!-- ITEM 3 -->
+    <div class="port-item fade-up" data-cat="reels">
+      <div class="port-img-wrap">
+        <div class="port-placeholder" style="background:linear-gradient(135deg,#1a0f0a,#5c2a0e)">
+          <span>🎬</span>
+        </div>
+        <div class="port-overlay">
+          <span class="port-cat">Reels</span>
+          <h3 data-en="Fashion Brand Reels" data-ar="ريلز علامة أزياء">Fashion Brand Reels</h3>
+          <p data-en="Series of high-impact reels achieving 1M+ views."
+             data-ar="سلسلة ريلز عالية التأثير حققت أكثر من مليون مشاهدة.">
+            Series of high-impact reels achieving 1M+ views.
+          </p>
+          <button class="port-btn" onclick="openModal(2)" data-en="View Project" data-ar="شاهد المشروع">View Project</button>
+        </div>
+      </div>
+      <div class="port-info">
+        <h4 data-en="Fashion Brand Reels" data-ar="ريلز علامة أزياء">Fashion Brand Reels</h4>
+        <span>Reels</span>
+      </div>
+    </div>
+
+    <!-- ITEM 4 -->
+    <div class="port-item fade-up" data-cat="photo">
+      <div class="port-img-wrap">
+        <div class="port-placeholder" style="background:linear-gradient(135deg,#0a1a0a,#1a4a1a)">
+          <span>📷</span>
+        </div>
+        <div class="port-overlay">
+          <span class="port-cat" data-en="Photography" data-ar="تصوير">Photography</span>
+          <h3 data-en="Product Photography" data-ar="تصوير منتجات">Product Photography</h3>
+          <p data-en="Premium product photography for an e-commerce brand."
+             data-ar="تصوير منتجات احترافي لعلامة تجارة إلكترونية.">
+            Premium product photography for an e-commerce brand.
+          </p>
+          <button class="port-btn" onclick="openModal(3)" data-en="View Project" data-ar="شاهد المشروع">View Project</button>
+        </div>
+      </div>
+      <div class="port-info">
+        <h4 data-en="Product Photography" data-ar="تصوير منتجات">Product Photography</h4>
+        <span data-en="Photography" data-ar="تصوير">Photography</span>
+      </div>
+    </div>
+
+    <!-- ITEM 5 -->
+    <div class="port-item fade-up" data-cat="motion">
+      <div class="port-img-wrap">
+        <div class="port-placeholder" style="background:linear-gradient(135deg,#1a1a0a,#4a4a0a)">
+          <span>⚡</span>
+        </div>
+        <div class="port-overlay">
+          <span class="port-cat" data-en="Motion" data-ar="موشن">Motion</span>
+          <h3 data-en="Animated Brand Ad" data-ar="إعلان موشن متحرك">Animated Brand Ad</h3>
+          <p data-en="Dynamic motion graphics ad for social media campaigns."
+             data-ar="إعلان موشن جرافيك ديناميكي لحملات السوشيال ميديا.">
+            Dynamic motion graphics ad for social media campaigns.
+          </p>
+          <button class="port-btn" onclick="openModal(4)" data-en="View Project" data-ar="شاهد المشروع">View Project</button>
+        </div>
+      </div>
+      <div class="port-info">
+        <h4 data-en="Animated Brand Ad" data-ar="إعلان موشن متحرك">Animated Brand Ad</h4>
+        <span data-en="Motion" data-ar="موشن">Motion</span>
+      </div>
+    </div>
+
+    <!-- ITEM 6 -->
+    <div class="port-item fade-up" data-cat="brand">
+      <div class="port-img-wrap">
+        <div class="port-placeholder" style="background:linear-gradient(135deg,#1a0a1a,#5c1a5c)">
+          <span>🎨</span>
+        </div>
+        <div class="port-overlay">
+          <span class="port-cat" data-en="Branding" data-ar="هوية">Branding</span>
+          <h3 data-en="Tech Startup Identity" data-ar="هوية شركة تقنية">Tech Startup Identity</h3>
+          <p data-en="Modern minimalist brand identity for a technology startup."
+             data-ar="هوية بصرية عصرية لشركة تقنية ناشئة.">
+            Modern minimalist brand identity for a technology startup.
+          </p>
+          <button class="port-btn" onclick="openModal(5)" data-en="View Project" data-ar="شاهد المشروع">View Project</button>
+        </div>
+      </div>
+      <div class="port-info">
+        <h4 data-en="Tech Startup Identity" data-ar="هوية شركة تقنية">Tech Startup Identity</h4>
+        <span data-en="Branding" data-ar="هوية">Branding</span>
+      </div>
+    </div>
+
+    <!-- ITEM 7 -->
+    <div class="port-item fade-up" data-cat="social">
+      <div class="port-img-wrap">
+        <div class="port-placeholder" style="background:linear-gradient(135deg,#0a1a1a,#0a4a4a)">
+          <span>📊</span>
+        </div>
+        <div class="port-overlay">
+          <span class="port-cat" data-en="Social Media" data-ar="سوشيال ميديا">Social Media</span>
+          <h3 data-en="Real Estate Campaign" data-ar="حملة عقارات">Real Estate Campaign</h3>
+          <p data-en="Full social media strategy and content for a real estate company."
+             data-ar="استراتيجية سوشيال ميديا ومحتوى متكامل لشركة عقارات.">
+            Full social media strategy and content for a real estate company.
+          </p>
+          <button class="port-btn" onclick="openModal(6)" data-en="View Project" data-ar="شاهد المشروع">View Project</button>
+        </div>
+      </div>
+      <div class="port-info">
+        <h4 data-en="Real Estate Campaign" data-ar="حملة عقارات">Real Estate Campaign</h4>
+        <span data-en="Social Media" data-ar="سوشيال ميديا">Social Media</span>
+      </div>
+    </div>
+
+    <!-- ITEM 8 -->
+    <div class="port-item fade-up" data-cat="reels">
+      <div class="port-img-wrap">
+        <div class="port-placeholder" style="background:linear-gradient(135deg,#1a0808,#6e1a1a)">
+          <span>🏋️</span>
+        </div>
+        <div class="port-overlay">
+          <span class="port-cat">Reels</span>
+          <h3 data-en="Gym Promo Reels" data-ar="ريلز ترويجية لصالة">Gym Promo Reels</h3>
+          <p data-en="High-energy promotional reels for a fitness brand."
+             data-ar="ريلز ترويجية عالية الطاقة لعلامة لياقة بدنية.">
+            High-energy promotional reels for a fitness brand.
+          </p>
+          <button class="port-btn" onclick="openModal(7)" data-en="View Project" data-ar="شاهد المشروع">View Project</button>
+        </div>
+      </div>
+      <div class="port-info">
+        <h4 data-en="Gym Promo Reels" data-ar="ريلز ترويجية لصالة">Gym Promo Reels</h4>
+        <span>Reels</span>
+      </div>
+    </div>
+
+    <!-- ITEM 9 -->
+    <div class="port-item fade-up" data-cat="photo">
+      <div class="port-img-wrap">
+        <div class="port-placeholder" style="background:linear-gradient(135deg,#0f0a1a,#2a1a4a)">
+          <span>🍽️</span>
+        </div>
+        <div class="port-overlay">
+          <span class="port-cat" data-en="Photography" data-ar="تصوير">Photography</span>
+          <h3 data-en="Food Photography" data-ar="تصوير طعام">Food Photography</h3>
+          <p data-en="Mouth-watering food photography for a premium restaurant."
+             data-ar="تصوير طعام احترافي لمطعم فاخر يفتح الشهية.">
+            Mouth-watering food photography for a premium restaurant.
+          </p>
+          <button class="port-btn" onclick="openModal(8)" data-en="View Project" data-ar="شاهد المشروع">View Project</button>
+        </div>
+      </div>
+      <div class="port-info">
+        <h4 data-en="Food Photography" data-ar="تصوير طعام">Food Photography</h4>
+        <span data-en="Photography" data-ar="تصوير">Photography</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div class="port-empty" id="portEmpty" style="display:none">
+    <div style="font-size:48px;margin-bottom:16px">🔍</div>
+    <p data-en="No projects in this category yet." data-ar="لا توجد مشاريع في هذه الفئة بعد.">No projects in this category yet.</p>
+  </div>
+
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="port-cta">
+  <h2 data-en="Ready to be our next <span>success story?</span>"
+      data-ar="مستعد لتكون قصة نجاحنا <span>القادمة؟</span>">
+    Ready to be our next <span>success story?</span>
+  </h2>
+  <p data-en="Let's create something amazing together." data-ar="لنصنع شيئاً مذهلاً معاً.">Let's create something amazing together.</p>
+  <a href="index.html#contact" class="btn-primary" style="display:inline-flex;margin-top:28px" data-en="🚀 Start Your Project" data-ar="🚀 ابدأ مشروعك">🚀 Start Your Project</a>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">
+    <img src="assets/logo-dark.png" alt="ALFA SPOT" height="36" onerror="this.style.display='none'"/>
+    <span>ALFA SPOT</span>
+  </div>
+  <p data-en="© 2026 ALFA SPOT. All rights reserved." data-ar="© 2026 ألفا سبوت. جميع الحقوق محفوظة.">© 2026 ALFA SPOT. All rights reserved.</p>
+  <p style="color:var(--gold);font-size:12px;font-style:italic">Your Vision, Our Spotlight</p>
+</footer>
+
+<!-- ══ PROJECT MODAL ══ -->
+<div class="port-modal" id="portModal">
+  <div class="modal-overlay" onclick="closeModal()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-img" id="modalImg"></div>
+    <div class="modal-body">
+      <span class="modal-cat" id="modalCat"></span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+      <div class="modal-tags" id="modalTags"></div>
+      <a href="index.html#contact" class="btn-primary" style="display:inline-flex;margin-top:28px" data-en="💬 Start Similar Project" data-ar="💬 ابدأ مشروعاً مشابهاً">💬 Start Similar Project</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/portfolio.js"></script>
+</body>
+</html>

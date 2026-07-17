@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Client Profile — ALFA SPOT Admin</title>
+  <link rel="stylesheet" href="css/admin.css"/>
+</head>
+<body>
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo"><h2>⚡ ALFA SPOT</h2><span>Admin Panel</span></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Main</div>
+      <a href="dashboard.html" class="nav-item"><span class="icon">📊</span> Dashboard</a>
+      <a href="clients.html"   class="nav-item active"><span class="icon">👥</span> Clients</a>
+      <a href="add-client.html" class="nav-item"><span class="icon">➕</span> Add Client</a>
+      <div class="nav-section">Website</div>
+      <a href="../index.html"     target="_blank" class="nav-item"><span class="icon">🌐</span> View Website</a>
+      <a href="../portfolio.html" target="_blank" class="nav-item"><span class="icon">🎨</span> Portfolio</a>
+      <a href="../packages.html"  target="_blank" class="nav-item"><span class="icon">💎</span> Packages</a>
+    </nav>
+    <div class="sidebar-footer"><div class="logout-btn" onclick="logout()"><span>🚪</span> Logout</div></div>
+  </aside>
+
+  <main class="main">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <h1 id="pageTitle">Client Profile</h1>
+        <p><a href="clients.html" style="color:var(--gold)">← Back to Clients</a></p>
+      </div>
+      <div class="topbar-right" id="topActions"></div>
+    </div>
+
+    <!-- ALERT -->
+    <div id="alertBox"></div>
+
+    <!-- PROFILE GRID -->
+    <div class="profile-grid" id="profileGrid" style="display:none">
+
+      <!-- LEFT: CLIENT CARD -->
+      <div>
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-avatar" id="pAvatar"></div>
+            <h2 id="pName"></h2>
+            <p  id="pCompany"></p>
+            <div class="profile-status" id="pStatus"></div>
+          </div>
+          <div class="profile-details">
+            <div class="detail-row"><span class="icon">📞</span><span class="key">Phone</span><span class="val" id="pPhone"></span></div>
+            <div class="detail-row"><span class="icon">📧</span><span class="key">Email</span><span class="val" id="pEmail"></span></div>
+            <div class="detail-row"><span class="icon">💎</span><span class="key">Package</span><span class="val" id="pPackage"></span></div>
+            <div class="detail-row"><span class="icon">💳</span><span class="key">Payment</span><span class="val" id="pPayment"></span></div>
+            <div class="detail-row"><span class="icon">🧑‍💼</span><span class="key">Referred By</span><span class="val" id="pReferred"></span></div>
+            <div class="detail-row"><span class="icon">💰</span><span class="key">Commission</span><span class="val" id="pCommission"></span></div>
+            <div class="detail-row"><span class="icon">📅</span><span class="key">Member Since</span><span class="val" id="pSince"></span></div>
+          </div>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div class="card" style="margin-top:18px">
+          <div class="card-header"><h3>Quick Actions</h3></div>
+          <div class="card-body" style="display:flex;flex-direction:column;gap:10px">
+            <button class="btn btn-success" onclick="openPayModal()">💰 Record Payment</button>
+            <a id="waBtn" href="#" target="_blank" class="btn btn-ghost">💬 WhatsApp</a>
+            <a id="editBtn" href="#" class="btn btn-info">✏️ Edit Client</a>
+            <button class="btn btn-danger" onclick="openDelModal()">🗑️ Delete Client</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: TABS -->
+      <div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('subscription',this)">📋 Subscription</button>
+          <button class="tab-btn" onclick="switchTab('payments',this)">💰 Payments</button>
+          <button class="tab-btn" onclick="switchTab('notes',this)">📝 Notes</button>
+          <button class="tab-btn" onclick="switchTab('activity',this)">🕒 Activity</button>
+        </div>
+
+        <!-- SUBSCRIPTION TAB -->
+        <div class="tab-content active" id="tab-subscription">
+          <div class="sub-card">
+            <div class="sub-card-header">
+              <h4>Current Subscription</h4>
+              <span class="badge" id="subStatusBadge"></span>
+            </div>
+            <div class="sub-info-grid">
+              <div class="sub-info-item">
+                <div class="label">Package</div>
+                <div class="value" id="subPackage"></div>
+              </div>
+              <div class="sub-info-item">
+                <div class="label">Start Date</div>
+                <div class="value" id="subStart"></div>
+              </div>
+              <div class="sub-info-item">
+                <div class="label">End Date</div>
+                <div class="value" id="subEnd"></div>
+              </div>
+              <div class="sub-info-item">
+                <div class="label">Days Left</div>
+                <div class="value" id="subDays"></div>
+              </div>
+              <div class="sub-info-item">
+                <div class="label">Amount</div>
+                <div class="value" id="subAmount"></div>
+              </div>
+              <div class="sub-info-item">
+                <div class="label">Paid</div>
+                <div class="value" id="subPaid"></div>
+              </div>
+            </div>
+            <div class="progress-bar-wrap">
+              <div class="progress-label">
+                <span>Subscription Progress</span>
+                <span id="subProgress">0%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" id="subProgressFill" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h3>Services Included</h3></div>
+            <div class="card-body">
+              <div class="services-chips" id="servicesChips"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYMENTS TAB -->
+        <div class="tab-content" id="tab-payments">
+          <div class="card">
+            <div class="card-header">
+              <h3>Payment History</h3>
+              <button class="btn btn-gold btn-sm" onclick="openPayModal()">+ Add Payment</button>
+            </div>
+            <div class="card-body" id="paymentsList">
+              <div class="empty-state"><div class="icon">💳</div><p>No payments recorded yet.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NOTES TAB -->
+        <div class="tab-content" id="tab-notes">
+          <div class="card">
+            <div class="card-header"><h3>Notes</h3></div>
+            <div class="card-body">
+              <div id="notesList"></div>
+              <div class="note-add">
+                <textarea id="noteInput" rows="2" placeholder="Add a note..."></textarea>
+                <button class="btn btn-gold" onclick="saveNote()">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTIVITY TAB -->
+        <div class="tab-content" id="tab-activity">
+          <div class="card">
+            <div class="card-header"><h3>Activity Log</h3></div>
+            <div class="card-body" id="activityList">
+              <div class="empty-state"><div class="icon">🕒</div><p>No activity yet.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- NOT FOUND -->
+    <div id="notFound" style="display:none">
+      <div class="empty-state" style="padding:100px 20px">
+        <div class="icon">❌</div>
+        <p>Client not found. <a href="clients.html" style="color:var(--gold)">Back to clients</a></p>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-wrap" id="payModal">
+  <div class="modal">
+    <h3>Record Payment</h3>
+    <p>Add a new payment record for this client.</p>
+    <div class="form-grid" style="margin-bottom:0">
+      <div class="form-group">
+        <label>Amount ($)</label>
+        <input type="number" id="payAmount" placeholder="e.g. 299"/>
+      </div>
+      <div class="form-group">
+        <label>Method</label>
+        <select id="payMethod">
+          <option>Bank Transfer</option>
+          <option>Cash</option>
+          <option>PayPal</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label>Note</label>
+        <input type="text" id="payNote" placeholder="e.g. Monthly payment - July"/>
+      </div>
+    </div>
+    <div class="modal-btns" style="margin-top:20px">
+      <button class="btn btn-ghost" onclick="closePayModal()">Cancel</button>
+      <button class="btn btn-gold" onclick="savePayment()">Save Payment</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal-wrap" id="delModal">
+  <div class="modal">
+    <h3>Delete Client?</h3>
+    <p>This will permanently delete this client and all their data. This cannot be undone.</p>
+    <div class="modal-btns">
+      <button class="btn btn-ghost" onclick="closeDelModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/db.js"></script>
+<script>
+guardAuth();
+
+const params   = new URLSearchParams(window.location.search);
+const clientId = params.get('id');
+let client     = null;
+
+function logout() { localStorage.removeItem('as_loggedIn'); window.location.href = 'login.html'; }
+
+async function load() {
+  client = await getClient(clientId);
+  if (!client) { document.getElementById('notFound').style.display = 'block'; return; }
+
+  document.getElementById('profileGrid').style.display = 'grid';
+  document.title = client.name + ' — ALFA SPOT Admin';
+
+  // Top
+  document.getElementById('pageTitle').textContent = client.name;
+  document.getElementById('topActions').innerHTML  =
+    `<a href="add-client.html?id=${client.id}" class="btn btn-gold">✏️ Edit Client</a>`;
+
+  // Alert
+  const st = getSubStatus(client.endDate);
+  const d  = daysUntil(client.endDate);
+  const alertBox = document.getElementById('alertBox');
+  if (st === 'expired')
+    alertBox.innerHTML = `<div class="alert-box danger">🔴 Subscription expired ${Math.abs(d)} day${Math.abs(d)!==1?'s':''} ago. Please follow up for renewal.</div>`;
+  else if (st === 'soon')
+    alertBox.innerHTML = `<div class="alert-box warning">⚠️ Subscription expires ${d===0?'today':'in '+d+' day'+(d!==1?'s':'')}. Time to renew!</div>`;
+
+  // Profile card
+  document.getElementById('pAvatar').textContent    = initials(client.name);
+  document.getElementById('pName').textContent      = client.name;
+  document.getElementById('pCompany').textContent   = client.company || 'No company';
+  document.getElementById('pPhone').textContent     = client.phone || '—';
+  document.getElementById('pEmail').textContent     = client.email || '—';
+  document.getElementById('pSince').textContent     = formatDate(client.createdAt);
+
+  const pkgBadge = { Starter:'badge-starter', Growth:'badge-growth', Pro:'badge-pro', Custom:'badge-custom' };
+  const payBadge = { paid:'badge-paid', partial:'badge-partial', pending:'badge-pending' };
+  const stsBadge = { active:'badge-active', soon:'badge-soon', expired:'badge-expired' };
+
+  document.getElementById('pPackage').innerHTML  = `<span class="badge ${pkgBadge[client.package]||''}">${client.package}</span>`;
+  document.getElementById('pPayment').innerHTML  = `<span class="badge ${payBadge[client.paymentStatus]||''}">${client.paymentStatus}</span>`;
+  document.getElementById('pStatus').innerHTML   = `<span class="badge ${stsBadge[st]}">${st}</span>`;
+
+  // Referral & Commission
+  if (client.referredBy) {
+    const member = await getTeamMember(client.referredBy);
+    const commAmt = (Number(client.amountPaid||0) * Number(client.commissionPct||0) / 100).toFixed(2);
+    document.getElementById('pReferred').innerHTML   = member
+      ? `<a href="team.html" style="color:var(--gold)">${member.name}</a>`
+      : '<span style="color:var(--muted)">—</span>';
+    document.getElementById('pCommission').innerHTML = member
+      ? `<span style="color:var(--info)">${client.commissionPct||0}% = <strong style="color:var(--gold)">$${commAmt}</strong></span>`
+      : '—';
+  } else {
+    document.getElementById('pReferred').innerHTML   = '<span style="color:var(--muted)">No referral</span>';
+    document.getElementById('pCommission').innerHTML = '<span style="color:var(--muted)">—</span>';
+  }
+
+  // Quick actions
+  document.getElementById('waBtn').href   = `https://wa.me/${(client.phone||'').replace(/\D/g,'')}`;
+  document.getElementById('editBtn').href = `add-client.html?id=${client.id}`;
+
+  // Subscription tab
+  document.getElementById('subPackage').textContent = client.package;
+  document.getElementById('subStart').textContent   = formatDate(client.startDate);
+  document.getElementById('subEnd').textContent     = formatDate(client.endDate);
+  document.getElementById('subAmount').textContent  = '$' + (client.totalAmount || '—');
+  document.getElementById('subPaid').textContent    = '$' + (client.amountPaid  || 0);
+
+  const dLabel = d < 0 ? Math.abs(d) + 'd overdue' : d === 0 ? 'Today' : d + ' days';
+  document.getElementById('subDays').innerHTML      = `<span style="color:${d<0?'var(--danger)':d<=7?'var(--warning)':'var(--success)'}">${dLabel}</span>`;
+  document.getElementById('subStatusBadge').className = 'badge ' + stsBadge[st];
+  document.getElementById('subStatusBadge').textContent = st;
+
+  const pct = subProgress(client.startDate, client.endDate);
+  const fill = document.getElementById('subProgressFill');
+  fill.style.width = pct + '%';
+  if (pct > 90 || st === 'expired') fill.classList.add('danger');
+  else if (pct > 75)                fill.classList.add('warning');
+  document.getElementById('subProgress').textContent = pct + '%';
+
+  // Services
+  document.getElementById('servicesChips').innerHTML =
+    (client.services || []).map(s => `<span class="service-chip">${s}</span>`).join('') || '<span style="color:var(--muted);font-size:13px">No services added</span>';
+
+  renderPayments();
+  renderNotes();
+  renderActivity();
+}
+
+function renderPayments() {
+  const payments = client.payments || [];
+  const el = document.getElementById('paymentsList');
+  if (!payments.length) {
+    el.innerHTML = `<div class="empty-state"><div class="icon">💳</div><p>No payments recorded yet.</p></div>`;
+    return;
+  }
+  el.innerHTML = payments.map(p => `
+    <div class="payment-item">
+      <div class="payment-left">
+        <div class="payment-icon ${p.type||'in'}">💰</div>
+        <div>
+          <h5>${p.note || 'Payment'}</h5>
+          <p>${p.method || '—'} · ${formatDate(p.date)}</p>
+        </div>
+      </div>
+      <div class="payment-amount ${p.type||'in'}">+$${p.amount}</div>
+    </div>`).join('');
+}
+
+function renderNotes() {
+  const notes = client.notes || [];
+  const el    = document.getElementById('notesList');
+  if (!notes.length) {
+    el.innerHTML = `<div class="empty-state" style="padding:20px"><div class="icon">📝</div><p>No notes yet.</p></div>`;
+    return;
+  }
+  el.innerHTML = notes.map(n => `
+    <div class="note-item">
+      <p>${n.text}</p>
+      <span>${formatDateTime(n.date)} · <span style="color:var(--danger);cursor:pointer" onclick="removeNote('${n.id}')">Delete</span></span>
+    </div>`).join('');
+}
+
+function renderActivity() {
+  const activity = client.activity || [];
+  const el       = document.getElementById('activityList');
+  if (!activity.length) {
+    el.innerHTML = `<div class="empty-state"><div class="icon">🕒</div><p>No activity yet.</p></div>`;
+    return;
+  }
+  el.innerHTML = activity.map(a => `
+    <div class="activity-item">
+      <div class="activity-dot ${a.type||'gold'}"></div>
+      <div><p>${a.text}</p><span>${formatDateTime(a.date)}</span></div>
+    </div>`).join('');
+}
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+// Payment modal
+function openPayModal()  { document.getElementById('payModal').classList.add('open'); }
+function closePayModal() { document.getElementById('payModal').classList.remove('open'); }
+
+async function savePayment() {
+  const amount = document.getElementById('payAmount').value.trim();
+  const method = document.getElementById('payMethod').value;
+  const note   = document.getElementById('payNote').value.trim();
+  if (!amount) return;
+  await addPayment(clientId, { type:'in', amount: Number(amount), method, note });
+  closePayModal();
+  document.getElementById('payAmount').value = '';
+  document.getElementById('payNote').value   = '';
+  // refresh payment status display
+  await load();
+}
+
+// Notes
+async function saveNote() {
+  const text = document.getElementById('noteInput').value.trim();
+  if (!text) return;
+  await addNote(clientId, text);
+  client = await getClient(clientId);
+  renderNotes();
+  renderActivity();
+  document.getElementById('noteInput').value = '';
+}
+
+async function removeNote(nid) {
+  await deleteNote(clientId, nid);
+  client = await getClient(clientId);
+  renderNotes();
+}
+
+// Delete modal
+function openDelModal()  { document.getElementById('delModal').classList.add('open'); }
+function closeDelModal() { document.getElementById('delModal').classList.remove('open'); }
+async function confirmDelete() { await deleteClient(clientId); window.location.href = 'clients.html'; }
+
+load();
+</script>
+</body>
+</html>

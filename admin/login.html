@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login — ALFA SPOT</title>
+  <link rel="stylesheet" href="css/admin.css"/>
+</head>
+<body>
+<div class="login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <h1>⚡ ALFA SPOT</h1>
+      <p>Client Management System</p>
+    </div>
+
+    <div class="error-msg" id="errMsg">Incorrect username or password.</div>
+
+    <div class="form-group" style="margin-bottom:16px">
+      <label>Username</label>
+      <input type="text" id="user" placeholder="Enter username"/>
+    </div>
+    <div class="form-group" style="margin-bottom:24px">
+      <label>Password</label>
+      <input type="password" id="pass" placeholder="Enter password"/>
+    </div>
+    <button class="btn btn-gold" style="width:100%;justify-content:center;padding:13px" onclick="doLogin()">Login →</button>
+    <p style="text-align:center;margin-top:20px;font-size:13px;color:var(--muted)">
+      <a href="../index.html" style="color:var(--gold)">← Back to Website</a>
+    </p>
+  </div>
+</div>
+<script>
+  const CREDS = { user: 'admin', pass: 'alfaspot2024' };
+  function doLogin() {
+    const u = document.getElementById('user').value.trim();
+    const p = document.getElementById('pass').value.trim();
+    if (u === CREDS.user && p === CREDS.pass) {
+      localStorage.setItem('as_loggedIn', 'true');
+      window.location.href = 'dashboard.html';
+    } else {
+      document.getElementById('errMsg').style.display = 'block';
+    }
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+</script>
+</body>
+</html>

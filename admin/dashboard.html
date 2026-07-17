@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — ALFA SPOT Admin</title>
+  <link rel="stylesheet" href="css/admin.css"/>
+</head>
+<body>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h2>⚡ ALFA SPOT</h2>
+      <span>Admin Panel</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Main</div>
+      <a href="dashboard.html" class="nav-item active"><span class="icon">📊</span> Dashboard</a>
+      <a href="clients.html"   class="nav-item"><span class="icon">👥</span> Clients</a>
+      <a href="add-client.html" class="nav-item"><span class="icon">➕</span> Add Client</a>
+      <div class="nav-section">Team</div>
+      <a href="team.html"        class="nav-item"><span class="icon">🧑‍💼</span> Team Members</a>
+      <a href="commissions.html" class="nav-item"><span class="icon">💰</span> Commissions</a>
+      <div class="nav-section">Website</div>
+      <a href="../index.html" target="_blank" class="nav-item"><span class="icon">🌐</span> View Website</a>
+      <a href="../portfolio.html" target="_blank" class="nav-item"><span class="icon">🎨</span> Portfolio</a>
+      <a href="../packages.html"  target="_blank" class="nav-item"><span class="icon">💎</span> Packages</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="logout-btn" onclick="logout()"><span>🚪</span> Logout</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <h1>Dashboard</h1>
+        <p id="dateStr"></p>
+      </div>
+      <div class="topbar-right">
+        <a href="add-client.html" class="btn btn-gold">➕ Add Client</a>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-card blue">
+        <div class="label">Total Clients</div>
+        <div class="value" id="sTotal">0</div>
+        <div class="sub">All registered</div>
+      </div>
+      <div class="stat-card green">
+        <div class="label">Active</div>
+        <div class="value" id="sActive">0</div>
+        <div class="sub">Valid subscriptions</div>
+      </div>
+      <div class="stat-card yellow">
+        <div class="label">Expiring Soon</div>
+        <div class="value" id="sSoon">0</div>
+        <div class="sub">Within 7 days</div>
+      </div>
+      <div class="stat-card red">
+        <div class="label">Expired</div>
+        <div class="value" id="sExpired">0</div>
+        <div class="sub">Need renewal</div>
+      </div>
+      <div class="stat-card gold">
+        <div class="label">Monthly Revenue</div>
+        <div class="value" id="sRevenue">$0</div>
+        <div class="sub">This month</div>
+      </div>
+      <div class="stat-card purple">
+        <div class="label">Pending Payments</div>
+        <div class="value" id="sPending">0</div>
+        <div class="sub">Needs follow-up</div>
+      </div>
+    </div>
+
+    <!-- ALERTS -->
+    <div id="alertsWrap"></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">
+
+      <!-- EXPIRING SOON -->
+      <div class="card">
+        <div class="card-header">
+          <h3>⚠️ Expiring Soon</h3>
+          <a href="clients.html?filter=soon" class="btn btn-ghost btn-sm">View All</a>
+        </div>
+        <div class="card-body" id="expiringSoon">
+          <div class="empty-state"><div class="icon">✅</div><p>No expiring subscriptions</p></div>
+        </div>
+      </div>
+
+      <!-- EXPIRED -->
+      <div class="card">
+        <div class="card-header">
+          <h3>🔴 Expired</h3>
+          <a href="clients.html?filter=expired" class="btn btn-ghost btn-sm">View All</a>
+        </div>
+        <div class="card-body" id="expiredList">
+          <div class="empty-state"><div class="icon">🎉</div><p>No expired subscriptions</p></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RECENT CLIENTS -->
+    <div class="card">
+      <div class="card-header">
+        <h3>👥 Recent Clients</h3>
+        <a href="clients.html" class="btn btn-ghost btn-sm">View All</a>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Package</th>
+              <th>End Date</th>
+              <th>Days Left</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="recentTable">
+            <tr><td colspan="7"><div class="empty-state"><div class="icon">👥</div><p>No clients yet. <a href="add-client.html" style="color:var(--gold)">Add your first client</a></p></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/db.js"></script>
+<script>
+guardAuth();
+
+document.getElementById('dateStr').textContent = new Date().toLocaleDateString('en-US',{ weekday:'long', year:'numeric', month:'long', day:'numeric' });
+
+function logout() { localStorage.removeItem('as_loggedIn'); window.location.href='login.html'; }
+
+async function load() {
+  await seedTeamAvatars();
+  const clients = await getClients();
+  const active  = clients.filter(c => getSubStatus(c.endDate) === 'active');
+  const soon    = clients.filter(c => getSubStatus(c.endDate) === 'soon');
+  const expired = clients.filter(c => getSubStatus(c.endDate) === 'expired');
+  const pending = clients.filter(c => c.paymentStatus !== 'paid');
+
+  const thisMonth = new Date(); thisMonth.setDate(1); thisMonth.setHours(0,0,0,0);
+  const revenue = clients.reduce((sum, c) => {
+    return sum + (c.payments || []).filter(p => new Date(p.date) >= thisMonth && p.type === 'in').reduce((s,p) => s + Number(p.amount), 0);
+  }, 0);
+
+  document.getElementById('sTotal').textContent   = clients.length;
+  document.getElementById('sActive').textContent  = active.length;
+  document.getElementById('sSoon').textContent    = soon.length;
+  document.getElementById('sExpired').textContent = expired.length;
+  document.getElementById('sRevenue').textContent = '$' + revenue;
+  document.getElementById('sPending').textContent = pending.length;
+
+  // Expiring soon list
+  if (soon.length) {
+    document.getElementById('expiringSoon').innerHTML = soon.map(c => {
+      const d = daysUntil(c.endDate);
+      return `<div class="payment-item">
+        <div class="payment-left">
+          <div class="payment-icon in" style="background:rgba(243,156,18,0.15);font-size:14px;font-weight:800;color:var(--warning)">${initials(c.name)}</div>
+          <div><h5>${c.name}</h5><p>${c.company || '—'} · ${c.package}</p></div>
+        </div>
+        <div style="text-align:right">
+          <span style="color:var(--warning);font-weight:700;font-size:14px">${d === 0 ? 'Today!' : d + 'd left'}</span>
+          <br><a href="client.html?id=${c.id}" class="btn btn-ghost btn-sm" style="margin-top:6px">View</a>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // Expired list
+  if (expired.length) {
+    document.getElementById('expiredList').innerHTML = expired.map(c => {
+      const d = Math.abs(daysUntil(c.endDate));
+      return `<div class="payment-item">
+        <div class="payment-left">
+          <div class="payment-icon out" style="font-size:14px;font-weight:800;color:var(--danger)">${initials(c.name)}</div>
+          <div><h5>${c.name}</h5><p>${c.company || '—'} · ${c.package}</p></div>
+        </div>
+        <div style="text-align:right">
+          <span style="color:var(--danger);font-weight:700;font-size:14px">${d}d ago</span>
+          <br><a href="client.html?id=${c.id}" class="btn btn-ghost btn-sm" style="margin-top:6px">View</a>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // Recent clients table
+  const recent = [...clients].sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0,6);
+  if (recent.length) {
+    const pkgBadge = { Starter:'badge-starter', Growth:'badge-growth', Pro:'badge-pro', Custom:'badge-custom' };
+    const payBadge = { paid:'badge-paid', partial:'badge-partial', pending:'badge-pending' };
+    const stsBadge = { active:'badge-active', soon:'badge-soon', expired:'badge-expired' };
+
+    document.getElementById('recentTable').innerHTML = recent.map(c => {
+      const st = getSubStatus(c.endDate);
+      const d  = daysUntil(c.endDate);
+      const dl = d < 0 ? `<span style="color:var(--danger)">${Math.abs(d)}d ago</span>`
+               : d === 0 ? `<span style="color:var(--warning)">Today</span>`
+               : `<span style="color:${d<=7?'var(--warning)':'var(--success)'}">${d}d</span>`;
+      return `<tr>
+        <td>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--navy);flex-shrink:0">${initials(c.name)}</div>
+            <div><div style="font-weight:600;font-size:13.5px">${c.name}</div><div style="font-size:11px;color:var(--muted)">${c.company||'—'}</div></div>
+          </div>
+        </td>
+        <td><span class="badge ${pkgBadge[c.package]||''}">${c.package}</span></td>
+        <td style="color:var(--muted);font-size:13px">${formatDate(c.endDate)}</td>
+        <td>${dl}</td>
+        <td><span class="badge ${payBadge[c.paymentStatus]||''}">${c.paymentStatus}</span></td>
+        <td><span class="badge ${stsBadge[st]}">${st}</span></td>
+        <td><a href="client.html?id=${c.id}" class="btn btn-ghost btn-sm">View →</a></td>
+      </tr>`;
+    }).join('');
+  }
+}
+
+load();
+</script>
+</body>
+</html>

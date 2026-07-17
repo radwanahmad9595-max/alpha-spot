@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="ALFA SPOT Packages & Pricing — Transparent pricing for every budget"/>
+  <title>Packages — ALFA SPOT</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/packages.css"/>
+  <link rel="icon" href="assets/logo-dark.png" type="image/png"/>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-logo">
+    <img src="assets/logo-dark.png" alt="ALFA SPOT" onerror="this.style.display='none'"/>
+    <span>ALFA SPOT</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html"         data-en="Home"      data-ar="الرئيسية">Home</a></li>
+    <li><a href="index.html#services" data-en="Services"  data-ar="خدماتنا">Services</a></li>
+    <li><a href="portfolio.html"     data-en="Portfolio" data-ar="أعمالنا">Portfolio</a></li>
+    <li><a href="packages.html" class="active" data-en="Packages" data-ar="الباقات">Packages</a></li>
+    <li><a href="index.html#contact" data-en="Contact"   data-ar="تواصل">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">عربي</button>
+    <a href="index.html#contact" class="btn-nav" data-en="Get Started" data-ar="ابدأ الآن">Get Started</a>
+  </div>
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="pkg-hero">
+  <div class="pkg-hero-bg"></div>
+  <div class="pkg-hero-content">
+    <span class="section-tag" data-en="Transparent Pricing" data-ar="أسعار شفافة">Transparent Pricing</span>
+    <h1 class="section-title" data-en="Plans & <span>Packages</span>" data-ar="الباقات <span>والأسعار</span>">Plans & <span>Packages</span></h1>
+    <div class="gold-line" style="margin:20px auto"></div>
+    <p data-en="Simple, transparent pricing. Choose the plan that fits your goals — no hidden fees, no surprises."
+       data-ar="أسعار بسيطة وشفافة. اختر الباقة التي تناسب أهدافك — بدون رسوم خفية أو مفاجآت.">
+      Simple, transparent pricing. Choose the plan that fits your goals — no hidden fees, no surprises.
+    </p>
+
+    <!-- BILLING TOGGLE -->
+    <div class="billing-toggle">
+      <span data-en="Monthly" data-ar="شهري">Monthly</span>
+      <div class="toggle-switch" id="billingToggle" onclick="toggleBilling()">
+        <div class="toggle-knob"></div>
+      </div>
+      <span data-en="Yearly" data-ar="سنوي">Yearly</span>
+      <div class="save-badge" data-en="Save 20%" data-ar="وفّر 20%">Save 20%</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOCIAL MEDIA PACKAGES ══ -->
+<section class="pkg-section">
+  <div class="section-header">
+    <span class="section-tag" data-en="Social Media Management" data-ar="إدارة السوشيال ميديا">Social Media Management</span>
+    <h2 class="section-title" data-en="Monthly <span>Management Plans</span>" data-ar="باقات الإدارة <span>الشهرية</span>">Monthly <span>Management Plans</span></h2>
+    <div class="gold-line"></div>
+  </div>
+
+  <div class="pkg-grid">
+
+    <!-- STARTER -->
+    <div class="pkg-card fade-up">
+      <div class="pkg-header">
+        <div class="pkg-icon">🌱</div>
+        <h3 data-en="Starter" data-ar="المبتدئ">Starter</h3>
+        <p data-en="Perfect for new brands" data-ar="مثالية للعلامات الجديدة">Perfect for new brands</p>
+      </div>
+      <div class="pkg-price">
+        <span class="currency">$</span>
+        <span class="amount monthly-price" data-monthly="149" data-yearly="119">149</span>
+        <span class="period" data-en="/month" data-ar="/شهر">/month</span>
+      </div>
+      <ul class="pkg-features">
+        <li class="check" data-en="3 Social Platforms"           data-ar="3 منصات تواصل">3 Social Platforms</li>
+        <li class="check" data-en="12 Posts / Month"             data-ar="12 بوست / شهر">12 Posts / Month</li>
+        <li class="check" data-en="4 Stories / Week"             data-ar="4 ستوري / أسبوع">4 Stories / Week</li>
+        <li class="check" data-en="Post Design Included"         data-ar="تصميم البوستات مشمول">Post Design Included</li>
+        <li class="check" data-en="Monthly Report"               data-ar="تقرير شهري">Monthly Report</li>
+        <li class="cross" data-en="Paid Ads Management"          data-ar="إدارة الإعلانات الممولة">Paid Ads Management</li>
+        <li class="cross" data-en="Reels Production"             data-ar="إنتاج الريلز">Reels Production</li>
+        <li class="cross" data-en="Dedicated Account Manager"    data-ar="مدير حساب مخصص">Dedicated Account Manager</li>
+      </ul>
+      <a href="index.html#contact" class="pkg-btn outline" data-en="Get Started" data-ar="ابدأ الآن">Get Started</a>
+    </div>
+
+    <!-- GROWTH — POPULAR -->
+    <div class="pkg-card popular fade-up">
+      <div class="popular-badge" data-en="Most Popular" data-ar="الأكثر طلباً">Most Popular</div>
+      <div class="pkg-header">
+        <div class="pkg-icon">🚀</div>
+        <h3 data-en="Growth" data-ar="النمو">Growth</h3>
+        <p data-en="For growing businesses" data-ar="للأعمال في طور النمو">For growing businesses</p>
+      </div>
+      <div class="pkg-price">
+        <span class="currency">$</span>
+        <span class="amount monthly-price" data-monthly="299" data-yearly="239">299</span>
+        <span class="period" data-en="/month" data-ar="/شهر">/month</span>
+      </div>
+      <ul class="pkg-features">
+        <li class="check" data-en="5 Social Platforms"           data-ar="5 منصات تواصل">5 Social Platforms</li>
+        <li class="check" data-en="20 Posts / Month"             data-ar="20 بوست / شهر">20 Posts / Month</li>
+        <li class="check" data-en="Daily Stories"                data-ar="ستوري يومي">Daily Stories</li>
+        <li class="check" data-en="Post Design Included"         data-ar="تصميم البوستات مشمول">Post Design Included</li>
+        <li class="check" data-en="4 Reels / Month"              data-ar="4 ريلز / شهر">4 Reels / Month</li>
+        <li class="check" data-en="Paid Ads Management"          data-ar="إدارة الإعلانات الممولة">Paid Ads Management</li>
+        <li class="check" data-en="Bi-weekly Report"             data-ar="تقرير أسبوعين">Bi-weekly Report</li>
+        <li class="cross" data-en="Dedicated Account Manager"    data-ar="مدير حساب مخصص">Dedicated Account Manager</li>
+      </ul>
+      <a href="index.html#contact" class="pkg-btn primary" data-en="Get Started" data-ar="ابدأ الآن">Get Started</a>
+    </div>
+
+    <!-- PRO -->
+    <div class="pkg-card fade-up">
+      <div class="pkg-header">
+        <div class="pkg-icon">👑</div>
+        <h3 data-en="Pro" data-ar="الاحترافي">Pro</h3>
+        <p data-en="Full-scale digital presence" data-ar="حضور رقمي متكامل">Full-scale digital presence</p>
+      </div>
+      <div class="pkg-price">
+        <span class="currency">$</span>
+        <span class="amount monthly-price" data-monthly="549" data-yearly="439">549</span>
+        <span class="period" data-en="/month" data-ar="/شهر">/month</span>
+      </div>
+      <ul class="pkg-features">
+        <li class="check" data-en="All Platforms"                data-ar="جميع المنصات">All Platforms</li>
+        <li class="check" data-en="Unlimited Posts"              data-ar="بوستات غير محدودة">Unlimited Posts</li>
+        <li class="check" data-en="Daily Stories"                data-ar="ستوري يومي">Daily Stories</li>
+        <li class="check" data-en="Post Design Included"         data-ar="تصميم البوستات مشمول">Post Design Included</li>
+        <li class="check" data-en="8 Reels / Month"              data-ar="8 ريلز / شهر">8 Reels / Month</li>
+        <li class="check" data-en="Paid Ads Management"          data-ar="إدارة الإعلانات الممولة">Paid Ads Management</li>
+        <li class="check" data-en="Weekly Report"                data-ar="تقرير أسبوعي">Weekly Report</li>
+        <li class="check" data-en="Dedicated Account Manager"    data-ar="مدير حساب مخصص">Dedicated Account Manager</li>
+      </ul>
+      <a href="index.html#contact" class="pkg-btn outline" data-en="Get Started" data-ar="ابدأ الآن">Get Started</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ ONE-TIME PACKAGES ══ -->
+<section class="pkg-section" style="padding-top:0">
+  <div class="section-header">
+    <span class="section-tag" data-en="One-Time Services" data-ar="خدمات لمرة واحدة">One-Time Services</span>
+    <h2 class="section-title" data-en="À La Carte <span>Services</span>" data-ar="خدمات <span>منفردة</span>">À La Carte <span>Services</span></h2>
+    <div class="gold-line"></div>
+  </div>
+
+  <div class="onetime-grid">
+
+    <div class="onetime-card fade-up">
+      <span class="ot-icon">✨</span>
+      <div class="ot-body">
+        <h4 data-en="Brand Identity Package" data-ar="باقة الهوية البصرية">Brand Identity Package</h4>
+        <p data-en="Logo, colors, fonts, brand guide, and all digital assets."
+           data-ar="شعار وألوان وخطوط ودليل هوية وجميع الأصول الرقمية.">
+          Logo, colors, fonts, brand guide, and all digital assets.
+        </p>
+        <ul class="ot-includes">
+          <li data-en="✓ Logo Design (3 concepts)"   data-ar="✓ تصميم شعار (3 مفاهيم)">✓ Logo Design (3 concepts)</li>
+          <li data-en="✓ Brand Color Palette"         data-ar="✓ لوحة الألوان">✓ Brand Color Palette</li>
+          <li data-en="✓ Typography Selection"        data-ar="✓ اختيار الخطوط">✓ Typography Selection</li>
+          <li data-en="✓ Brand Guidelines PDF"        data-ar="✓ دليل الهوية PDF">✓ Brand Guidelines PDF</li>
+        </ul>
+      </div>
+      <div class="ot-price">
+        <span data-en="Starting at" data-ar="يبدأ من">Starting at</span>
+        <strong>$299</strong>
+        <a href="index.html#contact" class="pkg-btn outline sm" data-en="Order Now" data-ar="اطلب الآن">Order Now</a>
+      </div>
+    </div>
+
+    <div class="onetime-card fade-up">
+      <span class="ot-icon">🎬</span>
+      <div class="ot-body">
+        <h4 data-en="Reels Package" data-ar="باقة الريلز">Reels Package</h4>
+        <p data-en="Professional short-form video production for social media."
+           data-ar="إنتاج فيديو قصير احترافي لمنصات التواصل الاجتماعي.">
+          Professional short-form video production for social media.
+        </p>
+        <ul class="ot-includes">
+          <li data-en="✓ Script & Concept"            data-ar="✓ سكريبت ومفهوم">✓ Script & Concept</li>
+          <li data-en="✓ Filming (1 day)"             data-ar="✓ تصوير (يوم واحد)">✓ Filming (1 day)</li>
+          <li data-en="✓ Professional Editing"        data-ar="✓ مونتاج احترافي">✓ Professional Editing</li>
+          <li data-en="✓ Music & Color Grade"         data-ar="✓ موسيقى وتصحيح ألوان">✓ Music & Color Grade</li>
+        </ul>
+      </div>
+      <div class="ot-price">
+        <span data-en="Starting at" data-ar="يبدأ من">Starting at</span>
+        <strong>$199</strong>
+        <a href="index.html#contact" class="pkg-btn outline sm" data-en="Order Now" data-ar="اطلب الآن">Order Now</a>
+      </div>
+    </div>
+
+    <div class="onetime-card fade-up">
+      <span class="ot-icon">📷</span>
+      <div class="ot-body">
+        <h4 data-en="Photography Session" data-ar="جلسة تصوير">Photography Session</h4>
+        <p data-en="Professional product or brand photography session."
+           data-ar="جلسة تصوير منتجات أو علامة تجارية احترافية.">
+          Professional product or brand photography session.
+        </p>
+        <ul class="ot-includes">
+          <li data-en="✓ Half-Day Shoot"              data-ar="✓ تصوير نصف يوم">✓ Half-Day Shoot</li>
+          <li data-en="✓ 30+ Edited Photos"           data-ar="✓ 30+ صورة معدّلة">✓ 30+ Edited Photos</li>
+          <li data-en="✓ Professional Lighting"       data-ar="✓ إضاءة احترافية">✓ Professional Lighting</li>
+          <li data-en="✓ High-Res Delivery"           data-ar="✓ تسليم بدقة عالية">✓ High-Res Delivery</li>
+        </ul>
+      </div>
+      <div class="ot-price">
+        <span data-en="Starting at" data-ar="يبدأ من">Starting at</span>
+        <strong>$249</strong>
+        <a href="index.html#contact" class="pkg-btn outline sm" data-en="Order Now" data-ar="اطلب الآن">Order Now</a>
+      </div>
+    </div>
+
+    <div class="onetime-card fade-up">
+      <span class="ot-icon">⚡</span>
+      <div class="ot-body">
+        <h4 data-en="Motion Graphics Ad" data-ar="إعلان موشن جرافيك">Motion Graphics Ad</h4>
+        <p data-en="Animated advertisement for social media or digital platforms."
+           data-ar="إعلان متحرك لمنصات التواصل الاجتماعي أو الرقمية.">
+          Animated advertisement for social media or digital platforms.
+        </p>
+        <ul class="ot-includes">
+          <li data-en="✓ Concept & Storyboard"        data-ar="✓ مفهوم وستوريبورد">✓ Concept & Storyboard</li>
+          <li data-en="✓ 2D Animation"                data-ar="✓ أنيميشن ثنائي الأبعاد">✓ 2D Animation</li>
+          <li data-en="✓ Voice Over (optional)"       data-ar="✓ صوت خارجي (اختياري)">✓ Voice Over (optional)</li>
+          <li data-en="✓ All Platform Formats"        data-ar="✓ جميع أحجام المنصات">✓ All Platform Formats</li>
+        </ul>
+      </div>
+      <div class="ot-price">
+        <span data-en="Starting at" data-ar="يبدأ من">Starting at</span>
+        <strong>$349</strong>
+        <a href="index.html#contact" class="pkg-btn outline sm" data-en="Order Now" data-ar="اطلب الآن">Order Now</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ COMPARISON TABLE ══ -->
+<section class="pkg-section" style="padding-top:0">
+  <div class="section-header">
+    <span class="section-tag" data-en="Compare Plans" data-ar="قارن الباقات">Compare Plans</span>
+    <h2 class="section-title" data-en="What's <span>Included</span>" data-ar="ماذا <span>يشمل كل خطة</span>">What's <span>Included</span></h2>
+    <div class="gold-line"></div>
+  </div>
+
+  <div class="compare-table-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th data-en="Feature" data-ar="الميزة">Feature</th>
+          <th data-en="Starter" data-ar="المبتدئ">Starter</th>
+          <th class="highlight" data-en="Growth" data-ar="النمو">Growth</th>
+          <th data-en="Pro" data-ar="الاحترافي">Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td data-en="Social Platforms"        data-ar="المنصات">Social Platforms</td>        <td>3</td>               <td class="highlight">5</td>              <td data-en="All" data-ar="الكل">All</td></tr>
+        <tr><td data-en="Posts / Month"            data-ar="بوستات / شهر">Posts / Month</td>        <td>12</td>              <td class="highlight">20</td>             <td data-en="Unlimited" data-ar="غير محدود">Unlimited</td></tr>
+        <tr><td data-en="Stories"                  data-ar="ستوريات">Stories</td>                <td>4/week</td>          <td class="highlight" data-en="Daily" data-ar="يومي">Daily</td> <td data-en="Daily" data-ar="يومي">Daily</td></tr>
+        <tr><td data-en="Reels Production"         data-ar="إنتاج الريلز">Reels Production</td>   <td>✕</td>               <td class="highlight">4/mo</td>           <td>8/mo</td></tr>
+        <tr><td data-en="Post Design"              data-ar="تصميم البوستات">Post Design</td>        <td>✓</td>               <td class="highlight">✓</td>              <td>✓</td></tr>
+        <tr><td data-en="Paid Ads"                 data-ar="إعلانات ممولة">Paid Ads</td>            <td>✕</td>               <td class="highlight">✓</td>              <td>✓</td></tr>
+        <tr><td data-en="Reports"                  data-ar="التقارير">Reports</td>                <td data-en="Monthly" data-ar="شهري">Monthly</td> <td class="highlight" data-en="Bi-weekly" data-ar="كل أسبوعين">Bi-weekly</td> <td data-en="Weekly" data-ar="أسبوعي">Weekly</td></tr>
+        <tr><td data-en="Account Manager"          data-ar="مدير حساب">Account Manager</td>      <td>✕</td>               <td class="highlight">✕</td>              <td>✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="pkg-section" style="padding-top:0">
+  <div class="section-header">
+    <span class="section-tag" data-en="Common Questions" data-ar="أسئلة شائعة">Common Questions</span>
+    <h2 class="section-title" data-en="FAQ" data-ar="الأسئلة الشائعة">FAQ</h2>
+    <div class="gold-line"></div>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-en="Can I upgrade or downgrade my plan?" data-ar="هل يمكنني الترقية أو التخفيض؟">Can I upgrade or downgrade my plan?</span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <p data-en="Yes! You can change your plan at any time. Changes take effect from the next billing cycle."
+           data-ar="نعم! يمكنك تغيير باقتك في أي وقت. التغييرات تسري من دورة الفوترة التالية.">
+          Yes! You can change your plan at any time. Changes take effect from the next billing cycle.
+        </p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-en="Is there a contract or commitment?" data-ar="هل هناك عقد أو التزام؟">Is there a contract or commitment?</span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <p data-en="Monthly plans have no long-term commitment. Yearly plans offer a 20% discount with a 12-month commitment."
+           data-ar="الباقات الشهرية بدون التزام طويل الأمد. الباقات السنوية تقدم خصم 20% مع التزام 12 شهراً.">
+          Monthly plans have no long-term commitment. Yearly plans offer a 20% discount with a 12-month commitment.
+        </p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-en="What payment methods do you accept?" data-ar="ما طرق الدفع المتاحة؟">What payment methods do you accept?</span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <p data-en="We accept bank transfers, PayPal, and local payment methods. Contact us for details."
+           data-ar="نقبل التحويل البنكي وPayPal وطرق الدفع المحلية. تواصل معنا للتفاصيل.">
+          We accept bank transfers, PayPal, and local payment methods. Contact us for details.
+        </p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-en="Do you offer custom packages?" data-ar="هل تقدمون باقات مخصصة؟">Do you offer custom packages?</span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <p data-en="Absolutely! We create custom packages tailored to your specific needs and budget. Contact us to discuss."
+           data-ar="بالتأكيد! نصمم باقات مخصصة تناسب احتياجاتك وميزانيتك. تواصل معنا للنقاش.">
+          Absolutely! We create custom packages tailored to your specific needs and budget. Contact us to discuss.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="port-cta">
+  <h2 data-en="Not sure which plan is right for you?" data-ar="لست متأكداً من الباقة المناسبة؟">
+    Not sure which plan is <span data-en="right for you?" data-ar="المناسبة لك؟">right for you?</span>
+  </h2>
+  <p data-en="Talk to us — we'll recommend the perfect solution for your goals and budget."
+     data-ar="تحدث معنا — سنوصي بالحل المثالي لأهدافك وميزانيتك.">
+    Talk to us — we'll recommend the perfect solution for your goals and budget.
+  </p>
+  <a href="https://wa.me/962789711007" target="_blank" class="btn-primary" style="display:inline-flex;margin-top:28px" data-en="💬 Chat on WhatsApp" data-ar="💬 تحدث على واتساب">💬 Chat on WhatsApp</a>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">
+    <img src="assets/logo-dark.png" alt="ALFA SPOT" height="36" onerror="this.style.display='none'"/>
+    <span>ALFA SPOT</span>
+  </div>
+  <p data-en="© 2026 ALFA SPOT. All rights reserved." data-ar="© 2026 ألفا سبوت. جميع الحقوق محفوظة.">© 2026 ALFA SPOT. All rights reserved.</p>
+  <p style="color:var(--gold);font-size:12px;font-style:italic">Your Vision, Our Spotlight</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+// ── BILLING TOGGLE ──
+let isYearly = false;
+
+function toggleBilling() {
+  isYearly = !isYearly;
+  document.getElementById('billingToggle').classList.toggle('on', isYearly);
+  document.querySelectorAll('.monthly-price').forEach(el => {
+    const monthly = parseInt(el.dataset.monthly);
+    const yearly  = parseInt(el.dataset.yearly);
+    el.textContent = isYearly ? yearly : monthly;
+  });
+}
+
+// ── FAQ ──
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ── ANIMATIONS ──
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

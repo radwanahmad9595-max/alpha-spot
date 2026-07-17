@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="ALFA SPOT — Your Vision, Our Spotlight. Professional digital marketing, content creation, social media management and brand identity services."/>
+  <title>ALFA SPOT — Your Vision, Our Spotlight</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="assets/logo-dark.png" type="image/png"/>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">
+    <img src="assets/logo-watermark.png" alt="ALFA SPOT" onerror="this.style.display='none'"/>
+    <span>ALFA SPOT</span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#home"          class="active" data-en="Home"      data-ar="الرئيسية">Home</a></li>
+    <li><a href="#services"    data-en="Services"  data-ar="خدماتنا">Services</a></li>
+    <li><a href="#about"       data-en="About"     data-ar="من نحن">About</a></li>
+    <li><a href="#why"         data-en="Why Us"    data-ar="لماذا نحن">Why Us</a></li>
+    <li><a href="portfolio.html" data-en="Portfolio" data-ar="أعمالنا">Portfolio</a></li>
+    <li><a href="packages.html"  data-en="Packages"  data-ar="الباقات">Packages</a></li>
+    <li><a href="#contact"     data-en="Contact"   data-ar="تواصل">Contact</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">عربي</button>
+    <button class="btn-nav" onclick="openGS()" data-en="Get Started" data-ar="ابدأ الآن">Get Started</button>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="home" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <img src="assets/logo-watermark.png" alt="" class="hero-watermark" onerror="this.style.display='none'"/>
+
+  <div class="hero-content">
+    <div class="hero-badge" data-en="Digital Marketing Agency" data-ar="وكالة تسويق رقمي">Digital Marketing Agency</div>
+
+    <h1>
+      <span data-en="ALFA SPOT" data-ar="ألفا سبوت">ALFA SPOT</span>
+    </h1>
+
+    <p class="hero-tagline">— Your Vision, Our Spotlight —</p>
+
+    <p data-en="We transform your ideas into powerful digital presence. From reels to brand identity — we cover every angle of your marketing journey."
+       data-ar="نحوّل أفكارك إلى حضور رقمي قوي. من الريلز إلى الهوية البصرية — نغطي كل جانب من رحلتك التسويقية.">
+      We transform your ideas into powerful digital presence. From reels to brand identity — we cover every angle of your marketing journey.
+    </p>
+
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="goTo('#services')" data-en="🚀 Explore Services" data-ar="🚀 استكشف خدماتنا">🚀 Explore Services</button>
+      <button class="btn-outline" onclick="goTo('#contact')" data-en="💬 Contact Us" data-ar="💬 تواصل معنا">💬 Contact Us</button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <h3>6+</h3>
+        <p data-en="Services" data-ar="خدمة">Services</p>
+      </div>
+      <div class="stat">
+        <h3>100%</h3>
+        <p data-en="Dedication" data-ar="التزام">Dedication</p>
+      </div>
+      <div class="stat">
+        <h3>24/7</h3>
+        <p data-en="Support" data-ar="دعم">Support</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VISION & MISSION ══ -->
+<section id="vision-mission">
+  <div class="section-header">
+    <span class="section-tag" data-en="What Drives Us" data-ar="ما يقودنا">What Drives Us</span>
+    <h2 class="section-title" data-en="Our <span>Vision</span> & Mission" data-ar="رؤيتنا <span>ورسالتنا</span>">Our <span>Vision</span> & Mission</h2>
+    <div class="gold-line"></div>
+  </div>
+
+  <div class="vm-grid">
+    <div class="vm-card fade-up">
+      <div class="vm-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+      </div>
+      <h3 data-en="Our Vision" data-ar="رؤيتنا">Our Vision</h3>
+      <p data-en="To be the first creative destination that gives every brand its own unique visual signature and puts its content at the top."
+         data-ar="أن نكون الوجهة الإبداعية الأولى التي تمنح كل علامة تجارية بصمتها البصرية الخاصة وتضع محتواها في القمة.">
+        To be the first creative destination that gives every brand its own unique visual signature and puts its content at the top.
+      </p>
+    </div>
+
+    <div class="vm-card fade-up">
+      <div class="vm-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2c2.5 2 4 5.5 4 9 0 2-.6 3.7-1.4 5.1L12 19l-2.6-2.9C8.6 14.7 8 13 8 11c0-3.5 1.5-7 4-9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <circle cx="12" cy="10" r="1.8" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M8.5 15.5L6 18l1-3.3M15.5 15.5L18 18l-1-3.3M10 19l2 3 2-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3 data-en="Our Mission" data-ar="رسالتنا">Our Mission</h3>
+      <p data-en="We deliver high-quality creative content that combines creativity and strategy to help our clients grow and build an influential, sustainable digital presence."
+         data-ar="نقدم محتوى إبداعياً عالي الجودة يجمع بين الإبداع والاستراتيجية لمساعدة عملائنا على النمو وبناء حضور رقمي مؤثر ومستدام.">
+        We deliver high-quality creative content that combines creativity and strategy to help our clients grow and build an influential, sustainable digital presence.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="section-header">
+    <span class="section-tag" data-en="What We Do" data-ar="ما نقدمه">What We Do</span>
+    <h2 class="section-title" data-en="Our <span>Services</span>" data-ar="خدماتنا <span>الاحترافية</span>">Our <span>Services</span></h2>
+    <div class="gold-line"></div>
+    <p class="section-sub" style="margin-top:20px"
+       data-en="Six specialized services designed to elevate your brand and maximize your digital impact."
+       data-ar="ست خدمات متخصصة مصممة لرفع علامتك التجارية وتعظيم تأثيرك الرقمي.">
+      Six specialized services designed to elevate your brand and maximize your digital impact.
+    </p>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card fade-up">
+      <div class="service-num">01</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 8l2-4h3l-2 4M9 8l2-4h3l-2 4M14 8l2-4h3l-2 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="3" y="8" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M10 12l5 2.5-5 2.5v-5z" fill="currentColor"/>
+        </svg>
+      </div>
+      <h3 data-en="Reels Production" data-ar="إنتاج الريلز">Reels Production</h3>
+      <p data-en="Transform your ideas into short, impactful videos that capture attention and drive engagement."
+         data-ar="تحويل الأفكار إلى فيديوهات قصيرة مؤثرة تجذب الانتباه وتحقق التفاعل.">
+        Transform your ideas into short, impactful videos that capture attention and drive engagement.
+      </p>
+      <div class="service-tags">
+        <span data-en="Idea" data-ar="فكرة">Idea</span>
+        <span data-en="Shoot" data-ar="تصوير">Shoot</span>
+        <span data-en="Edit" data-ar="مونتاج">Edit</span>
+        <span data-en="Publish" data-ar="نشر">Publish</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">02</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="6" cy="12" r="2.4" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="18" cy="6" r="2.4" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="18" cy="18" r="2.4" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M8.2 10.8L15.8 7.2M8.2 13.2l7.6 3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 data-en="Social Media Management" data-ar="إدارة السوشيال ميديا">Social Media Management</h3>
+      <p data-en="Full management of your social accounts — content plans, posting schedules, and community engagement."
+         data-ar="إدارة كاملة لحساباتك على التواصل الاجتماعي — خطط المحتوى وجداول النشر والتفاعل.">
+        Full management of your social accounts — content plans, posting schedules, and community engagement.
+      </p>
+      <div class="service-tags">
+        <span>Instagram</span>
+        <span>TikTok</span>
+        <span>Facebook</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">03</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M3 15l4.5-4.5a1.5 1.5 0 012.1 0L13 13.9M13 13.9l1.8-1.8a1.5 1.5 0 012.1 0L21 15.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="8" cy="8" r="1.6" fill="currentColor"/>
+        </svg>
+      </div>
+      <h3 data-en="Post Design" data-ar="تصميم البوستات">Post Design</h3>
+      <p data-en="Professional creative designs that enhance your brand presence and capture your audience's attention."
+         data-ar="تصاميم إبداعية احترافية تعزز حضور علامتك وتأسر انتباه جمهورك.">
+        Professional creative designs that enhance your brand presence and capture your audience's attention.
+      </p>
+      <div class="service-tags">
+        <span data-en="Design" data-ar="تصميم">Design</span>
+        <span data-en="Brand" data-ar="هوية">Brand</span>
+        <span data-en="Deliver" data-ar="تسليم">Deliver</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">04</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 3h10l4 6-11 12L3 9l4-6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M3 9h18M9 3l3 6 3-6M12 9l-2 12M12 9l2 12" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3 data-en="Brand Identity" data-ar="الهوية البصرية">Brand Identity</h3>
+      <p data-en="Complete visual identity — logo, colors, typography, and brand guidelines that reflect your values."
+         data-ar="هوية بصرية متكاملة — شعار وألوان وخطوط ودليل هوية يعكس قيمك.">
+        Complete visual identity — logo, colors, typography, and brand guidelines that reflect your values.
+      </p>
+      <div class="service-tags">
+        <span data-en="Logo" data-ar="شعار">Logo</span>
+        <span data-en="Colors" data-ar="ألوان">Colors</span>
+        <span data-en="Guide" data-ar="دليل">Guide</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">05</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="9" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M9 9V6.5A1.5 1.5 0 0110.5 5H18a1.5 1.5 0 011.5 1.5v7.5a1.5 1.5 0 01-1.5 1.5H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3 data-en="Motion Graphics" data-ar="الموشن جرافيك">Motion Graphics</h3>
+      <p data-en="Animated graphics and motion designs that bring your brand to life with creativity and precision."
+         data-ar="رسوم متحركة وتصاميم حركية تبث الحياة في علامتك بإبداع ودقة.">
+        Animated graphics and motion designs that bring your brand to life with creativity and precision.
+      </p>
+      <div class="service-tags">
+        <span>2D</span>
+        <span>Animation</span>
+        <span data-en="Ads" data-ar="إعلانات">Ads</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">06</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 19.5V17l9.3-9.3a1.5 1.5 0 012.1 0l1.9 1.9a1.5 1.5 0 010 2.1L8 21H4v-1.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M13 6l3 3" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+      </div>
+      <h3 data-en="Content Writing" data-ar="كتابة المحتوى">Content Writing</h3>
+      <p data-en="Compelling marketing content that engages your audience, builds trust, and converts followers to customers."
+         data-ar="محتوى تسويقي مقنع يجذب جمهورك ويبني الثقة ويحول المتابعين لعملاء.">
+        Compelling marketing content that engages your audience, builds trust, and converts followers to customers.
+      </p>
+      <div class="service-tags">
+        <span data-en="Write" data-ar="كتابة">Write</span>
+        <span data-en="SEO" data-ar="محركات بحث">SEO</span>
+        <span data-en="Publish" data-ar="نشر">Publish</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="about-grid">
+
+    <div class="about-visual">
+      <div class="about-logo-wrap">
+        <img src="assets/logo-watermark.png" alt="ALFA SPOT"/>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <span class="section-tag" data-en="Who We Are" data-ar="من نحن">Who We Are</span>
+      <h2 class="section-title" data-en="Creativity Meets <span>Strategy</span>" data-ar="الإبداع يلتقي <span>بالاستراتيجية</span>">Creativity Meets <span>Strategy</span></h2>
+      <div class="gold-line" style="margin:20px 0"></div>
+      <p class="section-sub" style="margin-bottom:16px"
+         data-en="ALFA SPOT is a digital marketing agency built on a simple belief: every brand deserves to shine. We combine creativity, strategy, and technology to deliver results that matter."
+         data-ar="ALFA SPOT وكالة تسويق رقمي مبنية على قناعة بسيطة: كل علامة تجارية تستحق أن تتألق. نجمع الإبداع والاستراتيجية والتقنية لتحقيق نتائج حقيقية.">
+        ALFA SPOT is a digital marketing agency built on a simple belief: every brand deserves to shine. We combine creativity, strategy, and technology to deliver results that matter.
+      </p>
+      <p class="section-sub"
+         data-en="Arabic content and logos are crafted manually — never AI-generated — to preserve authenticity and visual identity."
+         data-ar="النصوص العربية والشعارات تُنتج يدوياً دائماً — وليس بالذكاء الاصطناعي — للحفاظ على الأصالة والهوية البصرية.">
+        Arabic content and logos are crafted manually — never AI-generated — to preserve authenticity and visual identity.
+      </p>
+
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="icon">🔍</div>
+          <h4 data-en="Discover" data-ar="نستكشف">Discover</h4>
+          <p data-en="We track new trends and analyze market needs."
+             data-ar="نرصد الاتجاهات الجديدة ونحلل احتياجات السوق.">
+            We track new trends and analyze market needs.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="icon">💡</div>
+          <h4 data-en="Innovate" data-ar="نبتكر">Innovate</h4>
+          <p data-en="We transform creative ideas into effective solutions."
+             data-ar="نحول الأفكار الإبداعية إلى حلول فعالة.">
+            We transform creative ideas into effective solutions.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="icon">🚀</div>
+          <h4 data-en="Develop" data-ar="نطور">Develop</h4>
+          <p data-en="We continuously improve our services and products."
+             data-ar="نحسن خدماتنا ومنتجاتنا بشكل مستمر.">
+            We continuously improve our services and products.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="icon">🏆</div>
+          <h4 data-en="Deliver" data-ar="نقدم">Deliver</h4>
+          <p data-en="Unique experiences that elevate your business."
+             data-ar="تجارب فريدة ترتقي بأعمال عملائنا.">
+            Unique experiences that elevate your business.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ WHY US ══ -->
+<section id="why">
+  <div class="section-header">
+    <span class="section-tag" data-en="Our Advantage" data-ar="ميزتنا">Our Advantage</span>
+    <h2 class="section-title" data-en="Why Choose <span>ALFA SPOT</span>?" data-ar="لماذا تختار <span>ألفا سبوت</span>؟">Why Choose <span>ALFA SPOT</span>?</h2>
+    <div class="gold-line"></div>
+  </div>
+
+  <div class="why-grid">
+
+    <div class="why-card fade-up">
+      <div class="why-icon">🎨</div>
+      <h3 data-en="100% Custom" data-ar="تخصيص 100%">100% Custom</h3>
+      <p data-en="Every project is unique. We never use templates — your brand gets a one-of-a-kind solution built from scratch."
+         data-ar="كل مشروع فريد. لا نستخدم قوالب جاهزة — علامتك تحصل على حل مصمم خصيصاً لها.">
+        Every project is unique. We never use templates — your brand gets a one-of-a-kind solution built from scratch.
+      </p>
+    </div>
+
+    <div class="why-card fade-up">
+      <div class="why-icon">🛡️</div>
+      <h3 data-en="Security & Trust" data-ar="الأمان والثقة">Security & Trust</h3>
+      <p data-en="Your data is protected with highest security standards. Full privacy — never shared with any third party."
+         data-ar="بياناتك محمية بأعلى معايير الأمان. خصوصية تامة — لا نشاركها مع أي طرف.">
+        Your data is protected with highest security standards. Full privacy — never shared with any third party.
+      </p>
+    </div>
+
+    <div class="why-card fade-up">
+      <div class="why-icon">⚡</div>
+      <h3 data-en="Fast Delivery" data-ar="تسليم سريع">Fast Delivery</h3>
+      <p data-en="We respect your timeline. Fast turnaround without compromising on quality — always on time."
+         data-ar="نحترم جدولك الزمني. تسليم سريع دون المساس بالجودة — دائماً في الوقت المحدد.">
+        We respect your timeline. Fast turnaround without compromising on quality — always on time.
+      </p>
+    </div>
+
+    <div class="why-card fade-up">
+      <div class="why-icon">📊</div>
+      <h3 data-en="Data-Driven Results" data-ar="نتائج مبنية على البيانات">Data-Driven Results</h3>
+      <p data-en="Every decision is backed by data and analytics. We measure, optimize, and report real growth."
+         data-ar="كل قرار مبني على بيانات وتحليلات. نقيس ونحسن ونُبلّغ عن النمو الحقيقي.">
+        Every decision is backed by data and analytics. We measure, optimize, and report real growth.
+      </p>
+    </div>
+
+    <div class="why-card fade-up">
+      <div class="why-icon">🤝</div>
+      <h3 data-en="Dedicated Support" data-ar="دعم متخصص">Dedicated Support</h3>
+      <p data-en="Our specialized team is always available to support you, answer questions, and guide your journey."
+         data-ar="فريقنا المتخصص متاح دائماً لدعمك والإجابة على أسئلتك وإرشادك في رحلتك.">
+        Our specialized team is always available to support you, answer questions, and guide your journey.
+      </p>
+    </div>
+
+    <div class="why-card fade-up">
+      <div class="why-icon">🌍</div>
+      <h3 data-en="Global Standards" data-ar="معايير عالمية">Global Standards</h3>
+      <p data-en="We follow international quality standards ensuring your brand competes on a global level."
+         data-ar="نلتزم بمعايير الجودة الدولية لضمان منافسة علامتك على المستوى العالمي.">
+        We follow international quality standards ensuring your brand competes on a global level.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PROCESS ══ -->
+<section id="process">
+  <div class="section-header">
+    <span class="section-tag" data-en="How We Work" data-ar="كيف نعمل">How We Work</span>
+    <h2 class="section-title" data-en="Our <span>Process</span>" data-ar="طريقة <span>عملنا</span>">Our <span>Process</span></h2>
+    <div class="gold-line"></div>
+  </div>
+
+  <div class="process-steps">
+
+    <div class="process-step fade-up">
+      <div class="step-num">01</div>
+      <h3 data-en="Discover" data-ar="الاكتشاف">Discover</h3>
+      <p data-en="We learn about your brand, goals, and target audience through a deep discovery session."
+         data-ar="نتعرف على علامتك وأهدافك وجمهورك المستهدف في جلسة اكتشاف عميقة.">
+        We learn about your brand, goals, and target audience through a deep discovery session.
+      </p>
+    </div>
+
+    <div class="process-step fade-up">
+      <div class="step-num">02</div>
+      <h3 data-en="Strategy" data-ar="الاستراتيجية">Strategy</h3>
+      <p data-en="We craft a tailored marketing strategy with clear goals, timelines, and measurable KPIs."
+         data-ar="نضع استراتيجية تسويقية مخصصة بأهداف وجداول زمنية ومؤشرات قابلة للقياس.">
+        We craft a tailored marketing strategy with clear goals, timelines, and measurable KPIs.
+      </p>
+    </div>
+
+    <div class="process-step fade-up">
+      <div class="step-num">03</div>
+      <h3 data-en="Create" data-ar="الإنتاج">Create</h3>
+      <p data-en="Our creative team produces high-quality content, designs, and campaigns aligned with your brand."
+         data-ar="فريقنا الإبداعي ينتج محتوى وتصاميم وحملات عالية الجودة تتوافق مع علامتك.">
+        Our creative team produces high-quality content, designs, and campaigns aligned with your brand.
+      </p>
+    </div>
+
+    <div class="process-step fade-up">
+      <div class="step-num">04</div>
+      <h3 data-en="Launch" data-ar="الإطلاق">Launch</h3>
+      <p data-en="We publish and distribute your content across the right channels at the optimal time."
+         data-ar="ننشر ونوزع محتواك عبر القنوات الصحيحة في الوقت الأمثل.">
+        We publish and distribute your content across the right channels at the optimal time.
+      </p>
+    </div>
+
+    <div class="process-step fade-up">
+      <div class="step-num">05</div>
+      <h3 data-en="Optimize" data-ar="التحسين">Optimize</h3>
+      <p data-en="We analyze performance, report results, and continuously optimize for better outcomes."
+         data-ar="نحلل الأداء ونبلغ عن النتائج ونحسن باستمرار لتحقيق نتائج أفضل.">
+        We analyze performance, report results, and continuously optimize for better outcomes.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="contact-grid">
+
+    <div class="contact-info">
+      <span class="section-tag" data-en="Get In Touch" data-ar="تواصل معنا">Get In Touch</span>
+      <h2 data-en="Let's Build Something <span>Great Together</span>"
+          data-ar="لنبني شيئاً <span>عظيماً معاً</span>">
+        Let's Build Something <span>Great Together</span>
+      </h2>
+      <p data-en="Ready to elevate your brand? Reach out and let's discuss how ALFA SPOT can spotlight your vision."
+         data-ar="مستعد لرفع مستوى علامتك؟ تواصل معنا ودعنا نناقش كيف يمكن لألفا سبوت أن يضيء رؤيتك.">
+        Ready to elevate your brand? Reach out and let's discuss how ALFA SPOT can spotlight your vision.
+      </p>
+
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="ci-icon">📧</div>
+          <div>
+            <h4 data-en="Email" data-ar="البريد الإلكتروني">Email</h4>
+            <p>alfaspot04@gmail.com</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">📞</div>
+          <div>
+            <h4 data-en="Phone / WhatsApp" data-ar="هاتف / واتساب">Phone / WhatsApp</h4>
+            <p>+962 789 711 007</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">📸</div>
+          <div>
+            <h4>Instagram</h4>
+            <p>@alfaspot04</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-bar">
+        <a class="social-link" href="mailto:alfaspot04@gmail.com" title="Email">📧</a>
+        <a class="social-link" href="https://wa.me/962789711007" title="WhatsApp" target="_blank">💬</a>
+        <a class="social-link" href="https://instagram.com/alfaspot04" title="Instagram" target="_blank">📸</a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label data-en="Full Name" data-ar="الاسم الكامل">Full Name</label>
+          <input type="text" id="fname" placeholder="Your name"/>
+        </div>
+        <div class="form-group">
+          <label data-en="Email" data-ar="البريد الإلكتروني">Email</label>
+          <input type="email" id="femail" placeholder="your@email.com"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label data-en="Phone / WhatsApp" data-ar="رقم الهاتف / واتساب">Phone / WhatsApp</label>
+        <input type="tel" id="fphone" placeholder="+962 xxx xxx xxx"/>
+      </div>
+      <div class="form-group">
+        <label data-en="Service Needed" data-ar="الخدمة المطلوبة">Service Needed</label>
+        <select id="fservice">
+          <option value="" data-en="Select a service..." data-ar="اختر خدمة...">Select a service...</option>
+          <option data-en="Reels Production"         data-ar="إنتاج الريلز">Reels Production</option>
+          <option data-en="Social Media Management"  data-ar="إدارة السوشيال ميديا">Social Media Management</option>
+          <option data-en="Post Design"              data-ar="تصميم البوستات">Post Design</option>
+          <option data-en="Brand Identity"           data-ar="الهوية البصرية">Brand Identity</option>
+          <option data-en="Motion Graphics"          data-ar="الموشن جرافيك">Motion Graphics</option>
+          <option data-en="Content Writing"          data-ar="كتابة المحتوى">Content Writing</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label data-en="Message" data-ar="رسالتك">Message</label>
+        <textarea id="fmsg" rows="4" placeholder="Tell us about your project..."></textarea>
+      </div>
+      <button class="form-submit" onclick="sendWhatsApp()" data-en="🚀 Send Message" data-ar="🚀 أرسل الرسالة">🚀 Send Message</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">
+    <img src="assets/logo-dark.png" alt="ALFA SPOT" height="36" onerror="this.style.display='none'"/>
+    <span>ALFA SPOT</span>
+  </div>
+  <p data-en="© 2026 ALFA SPOT. All rights reserved." data-ar="© 2026 ألفا سبوت. جميع الحقوق محفوظة.">© 2026 ALFA SPOT. All rights reserved.</p>
+  <p style="color:var(--gold);font-size:12px;font-style:italic">Your Vision, Our Spotlight</p>
+</footer>
+
+<!-- ══ GET STARTED POPUP ══ -->
+<div class="gs-overlay" id="gsOverlay" onclick="closeGS()"></div>
+<div class="gs-modal" id="gsModal">
+  <button class="gs-close" onclick="closeGS()">✕</button>
+
+  <div class="gs-header">
+    <div class="gs-icon">🚀</div>
+    <h2 data-en="Let's Get Started!" data-ar="لنبدأ معاً!">Let's Get Started!</h2>
+    <p data-en="Tell us about your project — we'll get back to you within 24 hours."
+       data-ar="أخبرنا عن مشروعك — سنتواصل معك خلال 24 ساعة.">
+      Tell us about your project — we'll get back to you within 24 hours.
+    </p>
+  </div>
+
+  <div class="gs-body">
+    <div class="gs-row">
+      <div class="gs-group">
+        <label data-en="Your Name *" data-ar="اسمك *">Your Name *</label>
+        <input type="text" id="gsName" placeholder="Ahmed Al-Rashid"/>
+      </div>
+      <div class="gs-group">
+        <label data-en="WhatsApp Number *" data-ar="رقم واتساب *">WhatsApp Number *</label>
+        <input type="tel" id="gsPhone" placeholder="+962 79 xxx xxxx"/>
+      </div>
+    </div>
+
+    <div class="gs-group">
+      <label data-en="Service You Need *" data-ar="الخدمة المطلوبة *">Service You Need *</label>
+      <div class="gs-services" id="gsServices">
+        <div class="gs-svc" onclick="toggleSvc(this)" data-en="🎬 Reels"           data-ar="🎬 ريلز">🎬 Reels</div>
+        <div class="gs-svc" onclick="toggleSvc(this)" data-en="📱 Social Media"    data-ar="📱 سوشيال ميديا">📱 Social Media</div>
+        <div class="gs-svc" onclick="toggleSvc(this)" data-en="✨ Brand Identity"  data-ar="✨ هوية بصرية">✨ Brand Identity</div>
+        <div class="gs-svc" onclick="toggleSvc(this)" data-en="🎨 Post Design"     data-ar="🎨 تصميم بوستات">🎨 Post Design</div>
+        <div class="gs-svc" onclick="toggleSvc(this)" data-en="⚡ Motion Graphics" data-ar="⚡ موشن جرافيك">⚡ Motion Graphics</div>
+        <div class="gs-svc" onclick="toggleSvc(this)" data-en="✍️ Content Writing" data-ar="✍️ كتابة محتوى">✍️ Content Writing</div>
+      </div>
+    </div>
+
+    <div class="gs-group">
+      <label data-en="Budget Range" data-ar="الميزانية التقريبية">Budget Range</label>
+      <div class="gs-budget" id="gsBudget">
+        <div class="gs-bud" onclick="toggleBud(this)">Under $200</div>
+        <div class="gs-bud" onclick="toggleBud(this)">$200 – $500</div>
+        <div class="gs-bud" onclick="toggleBud(this)">$500 – $1000</div>
+        <div class="gs-bud" onclick="toggleBud(this)">$1000+</div>
+      </div>
+    </div>
+
+    <div class="gs-group">
+      <label data-en="Quick Message (optional)" data-ar="رسالة سريعة (اختياري)">Quick Message (optional)</label>
+      <textarea id="gsMsg" rows="2" placeholder="Tell us a bit about your brand or project..."></textarea>
+    </div>
+
+    <div class="gs-error" id="gsError" data-en="Please fill in your name, phone, and select at least one service."
+         data-ar="يرجى ملء الاسم والهاتف واختيار خدمة واحدة على الأقل.">
+      Please fill in your name, phone, and select at least one service.
+    </div>
+
+    <button class="gs-submit" onclick="submitGS()">
+      <span data-en="💬 Send on WhatsApp" data-ar="💬 أرسل على واتساب">💬 Send on WhatsApp</span>
+    </button>
+
+    <p class="gs-note" data-en="We reply within 24 hours · No commitment required"
+       data-ar="نرد خلال 24 ساعة · لا التزام مطلوب">
+      We reply within 24 hours · No commitment required
+    </p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/leads.js"></script>
+<script src="js/main.js"></script>
+<script>
+// ── GET STARTED POPUP ──
+function openGS() {
+  document.getElementById('gsOverlay').classList.add('open');
+  document.getElementById('gsModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGS() {
+  document.getElementById('gsOverlay').classList.remove('open');
+  document.getElementById('gsModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function toggleSvc(el) {
+  el.classList.toggle('selected');
+}
+
+function toggleBud(el) {
+  document.querySelectorAll('.gs-bud').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function submitGS() {
+  const name  = document.getElementById('gsName').value.trim();
+  const phone = document.getElementById('gsPhone').value.trim();
+  const msg   = document.getElementById('gsMsg').value.trim();
+  const svcs  = [...document.querySelectorAll('.gs-svc.selected')].map(s => s.textContent.trim());
+  const bud   = document.querySelector('.gs-bud.selected')?.textContent || '—';
+  const err   = document.getElementById('gsError');
+
+  if (!name || !phone || svcs.length === 0) {
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+
+  const text = `*New Inquiry — ALFA SPOT* 🚀\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n🛠 *Services:* ${svcs.join(', ')}\n💰 *Budget:* ${bud}\n💬 *Message:* ${msg || '—'}`;
+  window.open(`https://wa.me/962789711007?text=${encodeURIComponent(text)}`, '_blank');
+
+  if (typeof saveLead === 'function') {
+    saveLead({ source: 'get_started', name, phone, services: svcs, budget: bud, message: msg });
+  }
+
+  closeGS();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeGS(); });
+</script>
+</body>
+</html>

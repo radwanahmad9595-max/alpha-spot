@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Client — ALFA SPOT Admin</title>
+  <link rel="stylesheet" href="css/admin.css"/>
+</head>
+<body>
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo"><h2>⚡ ALFA SPOT</h2><span>Admin Panel</span></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Main</div>
+      <a href="dashboard.html"  class="nav-item"><span class="icon">📊</span> Dashboard</a>
+      <a href="clients.html"    class="nav-item"><span class="icon">👥</span> Clients</a>
+      <a href="add-client.html" class="nav-item active"><span class="icon">➕</span> Add Client</a>
+      <div class="nav-section">Website</div>
+      <a href="../index.html"     target="_blank" class="nav-item"><span class="icon">🌐</span> View Website</a>
+      <a href="../portfolio.html" target="_blank" class="nav-item"><span class="icon">🎨</span> Portfolio</a>
+      <a href="../packages.html"  target="_blank" class="nav-item"><span class="icon">💎</span> Packages</a>
+    </nav>
+    <div class="sidebar-footer"><div class="logout-btn" onclick="logout()"><span>🚪</span> Logout</div></div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <h1 id="pageTitle">Add New Client</h1>
+        <p><a href="clients.html" style="color:var(--gold)">← Back to Clients</a></p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:start">
+
+      <!-- FORM -->
+      <div class="card">
+        <div class="card-header"><h3>Client Information</h3></div>
+        <div class="card-body">
+
+          <div class="error-msg" id="errMsg">Please fill in all required fields.</div>
+
+          <!-- PERSONAL INFO -->
+          <p style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px">Personal Info</p>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" id="name" placeholder="e.g. Ahmed Al-Rashid"/>
+            </div>
+            <div class="form-group">
+              <label>Company / Brand</label>
+              <input type="text" id="company" placeholder="e.g. Al-Rashid Trading"/>
+            </div>
+            <div class="form-group">
+              <label>Phone / WhatsApp *</label>
+              <div style="display:flex;gap:8px">
+                <select id="phoneCode" style="flex:0 0 150px"></select>
+                <input type="tel" id="phoneNumber" placeholder="79 xxx xxxx" style="flex:1"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="email" placeholder="client@email.com"/>
+            </div>
+            <div class="form-group">
+              <label>Instagram</label>
+              <input type="text" id="instagram" placeholder="@username"/>
+            </div>
+            <div class="form-group">
+              <label>Website</label>
+              <input type="text" id="website" placeholder="www.example.com"/>
+            </div>
+          </div>
+
+          <hr style="border:none;border-top:1px solid var(--border);margin:24px 0"/>
+
+          <!-- SUBSCRIPTION -->
+          <p style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px">Subscription</p>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Package *</label>
+              <select id="package">
+                <option value="">Select package</option>
+                <option value="Starter">Starter — $149/mo</option>
+                <option value="Growth">Growth — $299/mo</option>
+                <option value="Pro">Pro — $549/mo</option>
+                <option value="Custom">Custom</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Billing Cycle</label>
+              <select id="billing" onchange="calcEnd()">
+                <option value="monthly">Monthly</option>
+                <option value="quarterly">Quarterly (3 months)</option>
+                <option value="biannual">Bi-annual (6 months)</option>
+                <option value="yearly">Yearly (12 months)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Start Date *</label>
+              <div style="display:flex;gap:6px">
+                <select id="startDay"   style="flex:0 0 72px"  onchange="calcEnd()"></select>
+                <select id="startMonth" style="flex:1"         onchange="calcEnd()"></select>
+                <select id="startYear"  style="flex:0 0 88px"  onchange="calcEnd()"></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>End Date</label>
+              <div style="display:flex;gap:6px;opacity:.65">
+                <select id="endDay"   style="flex:0 0 72px"></select>
+                <select id="endMonth" style="flex:1"></select>
+                <select id="endYear"  style="flex:0 0 88px"></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Total Amount ($)</label>
+              <input type="number" id="totalAmount" placeholder="e.g. 299"/>
+            </div>
+            <div class="form-group">
+              <label>Amount Paid ($)</label>
+              <input type="number" id="amountPaid" placeholder="e.g. 299"/>
+            </div>
+            <div class="form-group">
+              <label>Payment Status</label>
+              <select id="paymentStatus">
+                <option value="paid">Paid ✓</option>
+                <option value="partial">Partial</option>
+                <option value="pending">Pending</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Payment Method</label>
+              <select id="paymentMethod">
+                <option>Bank Transfer</option>
+                <option>Cash</option>
+                <option>PayPal</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <hr style="border:none;border-top:1px solid var(--border);margin:24px 0"/>
+
+          <!-- SERVICES -->
+          <p style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px">Services Included</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px" id="servicesGrid">
+            <!-- rendered by JS -->
+          </div>
+
+          <hr style="border:none;border-top:1px solid var(--border);margin:24px 0"/>
+
+          <!-- REFERRAL & COMMISSION -->
+          <p style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px">Referral & Commission</p>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Referred By (Team Member)</label>
+              <select id="referredBy" onchange="autoFillCommission()">
+                <option value="">— No referral —</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Commission % for this Client</label>
+              <input type="number" id="commissionPct" placeholder="e.g. 10" min="0" max="100"/>
+            </div>
+          </div>
+          <div id="commPreview" style="display:none;background:rgba(242,169,59,0.07);border:1px solid rgba(242,169,59,0.2);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--muted);margin-bottom:4px"></div>
+
+          <hr style="border:none;border-top:1px solid var(--border);margin:24px 0"/>
+
+          <!-- NOTES -->
+          <p style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px">Notes</p>
+          <div class="form-group full">
+            <label>Internal Notes</label>
+            <textarea id="notes" rows="3" placeholder="Any internal notes about this client..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-gold" onclick="save()">💾 Save Client</button>
+            <a href="clients.html" class="btn btn-ghost">Cancel</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PREVIEW CARD -->
+      <div style="position:sticky;top:20px">
+        <div class="card">
+          <div class="card-header"><h3>Preview</h3></div>
+          <div class="card-body" style="text-align:center">
+            <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--navy);margin:0 auto 14px" id="prevAvatar">?</div>
+            <h3 id="prevName" style="font-size:16px;margin-bottom:4px">Client Name</h3>
+            <p  id="prevCompany" style="color:var(--muted);font-size:13px;margin-bottom:16px">Company</p>
+            <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap" id="prevPkg"></div>
+            <hr style="border:none;border-top:1px solid var(--border);margin:16px 0"/>
+            <div style="text-align:left;display:flex;flex-direction:column;gap:10px" id="prevDetails"></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div class="card-header"><h3>Tips</h3></div>
+          <div class="card-body" style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--muted)">
+            <p>✅ Fill <strong style="color:var(--ivory)">Name</strong> and <strong style="color:var(--ivory)">Phone</strong> as minimum.</p>
+            <p>✅ Select the <strong style="color:var(--ivory)">Start Date</strong> — End Date calculates automatically.</p>
+            <p>✅ Check all <strong style="color:var(--ivory)">services</strong> included in the package.</p>
+            <p>✅ You can add payments and notes later from the client profile.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/db.js"></script>
+<script>
+guardAuth();
+
+const SERVICES = [
+  'Social Media Management',
+  'Post Design',
+  'Reels Production',
+  'Professional Photography',
+  'Brand Identity',
+  'Motion Graphics',
+  'Paid Advertising',
+  'Content Writing',
+];
+
+// Render services checkboxes
+document.getElementById('servicesGrid').innerHTML = SERVICES.map(s => `
+  <label style="display:flex;align-items:center;gap:9px;cursor:pointer;padding:10px 14px;border:1px solid var(--border);border-radius:9px;transition:border-color 0.2s;font-size:13px" class="svc-label">
+    <input type="checkbox" value="${s}" class="svc-check" style="accent-color:var(--gold);width:15px;height:15px" onchange="updatePreview()"/>
+    ${s}
+  </label>`).join('');
+
+// ---------- Day / Month / Year date pickers ----------
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function populateDMY(prefix) {
+  const daySel   = document.getElementById(prefix+'Day');
+  const monthSel = document.getElementById(prefix+'Month');
+  const yearSel  = document.getElementById(prefix+'Year');
+  daySel.innerHTML = Array.from({length:31}, (_,i) => `<option value="${i+1}">${i+1}</option>`).join('');
+  monthSel.innerHTML = MONTHS.map((m,i) => `<option value="${i+1}">${m}</option>`).join('');
+  const nowYear = new Date().getFullYear();
+  const years = [];
+  for (let y = nowYear - 2; y <= nowYear + 8; y++) years.push(y);
+  yearSel.innerHTML = years.map(y => `<option value="${y}">${y}</option>`).join('');
+}
+populateDMY('start');
+populateDMY('end');
+
+function getISOFromDMY(prefix) {
+  const day   = document.getElementById(prefix+'Day').value;
+  const month = document.getElementById(prefix+'Month').value;
+  const year  = document.getElementById(prefix+'Year').value;
+  if (!day || !month || !year) return '';
+  return `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+}
+
+function setDMYFromISO(prefix, iso) {
+  if (!iso) return;
+  const [year, month, day] = iso.split('-');
+  document.getElementById(prefix+'Day').value   = String(Number(day));
+  document.getElementById(prefix+'Month').value = String(Number(month));
+  document.getElementById(prefix+'Year').value  = year;
+}
+
+// Set today as default start date
+setDMYFromISO('start', new Date().toISOString().split('T')[0]);
+calcEnd();
+
+// ---------- Phone / WhatsApp country code ----------
+const COUNTRIES = [
+["Afghanistan","AF","93"],["Albania","AL","355"],["Algeria","DZ","213"],["Andorra","AD","376"],["Angola","AO","244"],
+["Argentina","AR","54"],["Armenia","AM","374"],["Australia","AU","61"],["Austria","AT","43"],["Azerbaijan","AZ","994"],
+["Bahamas","BS","1"],["Bahrain","BH","973"],["Bangladesh","BD","880"],["Belarus","BY","375"],["Belgium","BE","32"],
+["Belize","BZ","501"],["Benin","BJ","229"],["Bhutan","BT","975"],["Bolivia","BO","591"],["Bosnia and Herzegovina","BA","387"],
+["Botswana","BW","267"],["Brazil","BR","55"],["Brunei","BN","673"],["Bulgaria","BG","359"],["Burkina Faso","BF","226"],
+["Burundi","BI","257"],["Cambodia","KH","855"],["Cameroon","CM","237"],["Canada","CA","1"],["Chad","TD","235"],
+["Chile","CL","56"],["China","CN","86"],["Colombia","CO","57"],["Comoros","KM","269"],["Congo","CG","242"],
+["Costa Rica","CR","506"],["Croatia","HR","385"],["Cuba","CU","53"],["Cyprus","CY","357"],["Czech Republic","CZ","420"],
+["Denmark","DK","45"],["Djibouti","DJ","253"],["Dominican Republic","DO","1"],["Ecuador","EC","593"],["Egypt","EG","20"],
+["El Salvador","SV","503"],["Estonia","EE","372"],["Ethiopia","ET","251"],["Fiji","FJ","679"],["Finland","FI","358"],
+["France","FR","33"],["Gabon","GA","241"],["Gambia","GM","220"],["Georgia","GE","995"],["Germany","DE","49"],
+["Ghana","GH","233"],["Greece","GR","30"],["Guatemala","GT","502"],["Guinea","GN","224"],["Haiti","HT","509"],
+["Honduras","HN","504"],["Hong Kong","HK","852"],["Hungary","HU","36"],["Iceland","IS","354"],["India","IN","91"],
+["Indonesia","ID","62"],["Iran","IR","98"],["Iraq","IQ","964"],["Ireland","IE","353"],["Israel","IL","972"],
+["Italy","IT","39"],["Ivory Coast","CI","225"],["Jamaica","JM","1"],["Japan","JP","81"],["Jordan","JO","962"],
+["Kazakhstan","KZ","7"],["Kenya","KE","254"],["Kuwait","KW","965"],["Kyrgyzstan","KG","996"],["Laos","LA","856"],
+["Latvia","LV","371"],["Lebanon","LB","961"],["Lesotho","LS","266"],["Liberia","LR","231"],["Libya","LY","218"],
+["Liechtenstein","LI","423"],["Lithuania","LT","370"],["Luxembourg","LU","352"],["Macau","MO","853"],["Madagascar","MG","261"],
+["Malawi","MW","265"],["Malaysia","MY","60"],["Maldives","MV","960"],["Mali","ML","223"],["Malta","MT","356"],
+["Mauritania","MR","222"],["Mauritius","MU","230"],["Mexico","MX","52"],["Moldova","MD","373"],["Monaco","MC","377"],
+["Mongolia","MN","976"],["Montenegro","ME","382"],["Morocco","MA","212"],["Mozambique","MZ","258"],["Myanmar","MM","95"],
+["Namibia","NA","264"],["Nepal","NP","977"],["Netherlands","NL","31"],["New Zealand","NZ","64"],["Nicaragua","NI","505"],
+["Niger","NE","227"],["Nigeria","NG","234"],["North Macedonia","MK","389"],["Norway","NO","47"],["Oman","OM","968"],
+["Pakistan","PK","92"],["Palestine","PS","970"],["Panama","PA","507"],["Papua New Guinea","PG","675"],["Paraguay","PY","595"],
+["Peru","PE","51"],["Philippines","PH","63"],["Poland","PL","48"],["Portugal","PT","351"],["Qatar","QA","974"],
+["Romania","RO","40"],["Russia","RU","7"],["Rwanda","RW","250"],["Saudi Arabia","SA","966"],["Senegal","SN","221"],
+["Serbia","RS","381"],["Sierra Leone","SL","232"],["Singapore","SG","65"],["Slovakia","SK","421"],["Slovenia","SI","386"],
+["Somalia","SO","252"],["South Africa","ZA","27"],["South Korea","KR","82"],["South Sudan","SS","211"],["Spain","ES","34"],
+["Sri Lanka","LK","94"],["Sudan","SD","249"],["Sweden","SE","46"],["Switzerland","CH","41"],["Syria","SY","963"],
+["Taiwan","TW","886"],["Tajikistan","TJ","992"],["Tanzania","TZ","255"],["Thailand","TH","66"],["Togo","TG","228"],
+["Tunisia","TN","216"],["Turkey","TR","90"],["Turkmenistan","TM","993"],["Uganda","UG","256"],["Ukraine","UA","380"],
+["United Arab Emirates","AE","971"],["United Kingdom","GB","44"],["United States","US","1"],["Uruguay","UY","598"],
+["Uzbekistan","UZ","998"],["Venezuela","VE","58"],["Vietnam","VN","84"],["Yemen","YE","967"],["Zambia","ZM","260"],
+["Zimbabwe","ZW","263"],
+];
+
+function flagEmoji(iso2) {
+  return String.fromCodePoint(...[...iso2].map(c => 127397 + c.charCodeAt(0)));
+}
+
+const phoneCodeSel = document.getElementById('phoneCode');
+phoneCodeSel.innerHTML = COUNTRIES
+  .map(([name, iso2, dial]) => `<option value="+${dial}">${flagEmoji(iso2)} ${name} (+${dial})</option>`)
+  .join('');
+phoneCodeSel.value = '+962'; // default: Jordan
+
+function splitPhone(fullPhone) {
+  const cleaned = (fullPhone || '').trim();
+  if (!cleaned.startsWith('+')) return { code: '+962', number: cleaned };
+  const dials = [...new Set(COUNTRIES.map(c => c[2]))].sort((a,b) => b.length - a.length);
+  for (const dial of dials) {
+    if (cleaned.startsWith('+'+dial)) {
+      return { code: '+'+dial, number: cleaned.slice(dial.length+1).trim() };
+    }
+  }
+  return { code: '+962', number: cleaned.replace('+','') };
+}
+
+// Edit mode
+const params  = new URLSearchParams(window.location.search);
+const editId  = params.get('id');
+let   editClient = null;
+
+function logout() { localStorage.removeItem('as_loggedIn'); window.location.href='login.html'; }
+
+function calcEnd() {
+  const start   = getISOFromDMY('start');
+  const billing = document.getElementById('billing').value;
+  if (!start) return;
+  const d = new Date(start);
+  if (billing === 'monthly')   d.setMonth(d.getMonth() + 1);
+  if (billing === 'quarterly') d.setMonth(d.getMonth() + 3);
+  if (billing === 'biannual')  d.setMonth(d.getMonth() + 6);
+  if (billing === 'yearly')    d.setFullYear(d.getFullYear() + 1);
+  setDMYFromISO('end', d.toISOString().split('T')[0]);
+  updatePreview();
+}
+
+function updatePreview() {
+  const name    = document.getElementById('name').value    || 'Client Name';
+  const company = document.getElementById('company').value || 'Company';
+  const pkg     = document.getElementById('package').value;
+  const start   = getISOFromDMY('start');
+  const end     = getISOFromDMY('end');
+  const paid    = document.getElementById('amountPaid').value;
+  const status  = document.getElementById('paymentStatus').value;
+
+  document.getElementById('prevAvatar').textContent  = initials(name);
+  document.getElementById('prevName').textContent    = name;
+  document.getElementById('prevCompany').textContent = company;
+
+  const pkgBadge = { Starter:'badge-starter', Growth:'badge-growth', Pro:'badge-pro', Custom:'badge-custom' };
+  const payBadge = { paid:'badge-paid', partial:'badge-partial', pending:'badge-pending' };
+
+  document.getElementById('prevPkg').innerHTML = pkg
+    ? `<span class="badge ${pkgBadge[pkg]||''}">${pkg}</span><span class="badge ${payBadge[status]||''}">${status}</span>`
+    : '';
+
+  const services = [...document.querySelectorAll('.svc-check:checked')].map(c => c.value);
+  document.getElementById('prevDetails').innerHTML = `
+    ${start ? `<div style="display:flex;gap:8px"><span style="color:var(--muted);font-size:12px">Start:</span><span style="font-size:12px">${formatDate(start)}</span></div>` : ''}
+    ${end   ? `<div style="display:flex;gap:8px"><span style="color:var(--muted);font-size:12px">End:</span><span style="font-size:12px">${formatDate(end)}</span></div>` : ''}
+    ${paid  ? `<div style="display:flex;gap:8px"><span style="color:var(--muted);font-size:12px">Paid:</span><span style="font-size:12px;color:var(--success)">$${paid}</span></div>` : ''}
+    ${services.length ? `<div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px">${services.map(s=>`<span class="service-chip" style="font-size:11px">${s}</span>`).join('')}</div>` : ''}
+  `;
+
+  // Highlight checked labels
+  document.querySelectorAll('.svc-label').forEach(label => {
+    const cb = label.querySelector('input');
+    label.style.borderColor = cb.checked ? 'rgba(242,169,59,0.5)' : 'var(--border)';
+    label.style.background  = cb.checked ? 'rgba(242,169,59,0.06)' : 'transparent';
+  });
+}
+
+const refSel = document.getElementById('referredBy');
+
+async function autoFillCommission() {
+  const memberId = document.getElementById('referredBy').value;
+  if (!memberId) {
+    document.getElementById('commissionPct').value = '';
+    document.getElementById('commPreview').style.display = 'none';
+    return;
+  }
+  const member = await getTeamMember(memberId);
+  if (member && !document.getElementById('commissionPct').value) {
+    document.getElementById('commissionPct').value = member.defaultCommission || 0;
+  }
+  await updateCommPreview();
+}
+
+async function updateCommPreview() {
+  const memberId = document.getElementById('referredBy').value;
+  const pct      = parseFloat(document.getElementById('commissionPct').value) || 0;
+  const paid     = parseFloat(document.getElementById('amountPaid').value)    || 0;
+  const preview  = document.getElementById('commPreview');
+
+  if (!memberId || !pct) { preview.style.display = 'none'; return; }
+
+  const member   = await getTeamMember(memberId);
+  const commAmt  = (paid * pct / 100).toFixed(2);
+
+  preview.style.display = 'block';
+  preview.innerHTML = `💰 <strong style="color:var(--ivory)">${member?.name||'Member'}</strong> will earn <strong style="color:var(--gold)">$${commAmt}</strong> commission (${pct}% of $${paid})`;
+}
+
+document.getElementById('commissionPct').addEventListener('input', updateCommPreview);
+document.getElementById('amountPaid').addEventListener('input', updateCommPreview);
+
+// Live preview
+['name','company','package','startDay','startMonth','startYear','billing','amountPaid','paymentStatus'].forEach(id => {
+  document.getElementById(id)?.addEventListener('input', updatePreview);
+  document.getElementById(id)?.addEventListener('change', updatePreview);
+});
+
+async function save() {
+  const name  = document.getElementById('name').value.trim();
+  const phone = phoneCodeSel.value + document.getElementById('phoneNumber').value.trim();
+  const phoneNumberRaw = document.getElementById('phoneNumber').value.trim();
+  const pkg   = document.getElementById('package').value;
+  const start = getISOFromDMY('start');
+  const end   = getISOFromDMY('end');
+  const err   = document.getElementById('errMsg');
+
+  if (!name || !phoneNumberRaw || !pkg || !start || !end) {
+    err.style.display = 'block';
+    err.scrollIntoView({ behavior:'smooth', block:'center' });
+    return;
+  }
+  err.style.display = 'none';
+
+  const services = [...document.querySelectorAll('.svc-check:checked')].map(c => c.value);
+  const noteText = document.getElementById('notes').value.trim();
+
+  const data = {
+    name, phone, pkg,
+    company:       document.getElementById('company').value.trim(),
+    email:         document.getElementById('email').value.trim(),
+    instagram:     document.getElementById('instagram').value.trim(),
+    website:       document.getElementById('website').value.trim(),
+    package:       pkg,
+    referredBy:    document.getElementById('referredBy').value  || null,
+    commissionPct: parseFloat(document.getElementById('commissionPct').value) || 0,
+    billing:       document.getElementById('billing').value,
+    startDate:     start,
+    endDate:       end,
+    totalAmount:   Number(document.getElementById('totalAmount').value) || 0,
+    amountPaid:    Number(document.getElementById('amountPaid').value)  || 0,
+    paymentStatus: document.getElementById('paymentStatus').value,
+    paymentMethod: document.getElementById('paymentMethod').value,
+    services,
+  };
+
+  if (editId && editClient) {
+    // preserve existing payments, notes, activity
+    if (noteText) {
+      const existingNotes = editClient.notes || [];
+      data.notes = [{ id:'n_'+Date.now(), text:noteText, date:new Date().toISOString() }, ...existingNotes];
+    }
+    await updateClient(editId, data);
+    window.location.href = 'client.html?id=' + editId;
+  } else {
+    const newClient = await addClient(data);
+    if (noteText) await addNote(newClient.id, noteText);
+    if (data.amountPaid > 0) {
+      await addPayment(newClient.id, {
+        type:'in', amount:data.amountPaid,
+        method: data.paymentMethod, note:'Initial payment'
+      });
+    }
+    window.location.href = 'client.html?id=' + newClient.id;
+  }
+}
+
+async function init() {
+  // Populate team members dropdown
+  const teamMembers = await getTeam();
+  teamMembers.forEach(m => {
+    const o = document.createElement('option');
+    o.value = m.id;
+    o.textContent = `${m.name} (${m.defaultCommission||0}% default)`;
+    refSel.appendChild(o);
+  });
+
+  if (editId) {
+    editClient = await getClient(editId);
+    if (editClient) {
+      document.getElementById('pageTitle').textContent = 'Edit Client';
+      const f = (id,val) => { if(document.getElementById(id)) document.getElementById(id).value = val || ''; };
+      f('name',          editClient.name);
+      f('company',       editClient.company);
+      const { code, number } = splitPhone(editClient.phone);
+      phoneCodeSel.value = code;
+      f('phoneNumber',   number);
+      f('email',         editClient.email);
+      f('instagram',     editClient.instagram);
+      f('website',       editClient.website);
+      f('package',       editClient.package);
+      f('billing',       editClient.billing || 'monthly');
+      setDMYFromISO('start', editClient.startDate);
+      setDMYFromISO('end',   editClient.endDate);
+      f('totalAmount',   editClient.totalAmount);
+      f('amountPaid',    editClient.amountPaid);
+      f('paymentStatus', editClient.paymentStatus);
+      f('paymentMethod', editClient.paymentMethod);
+      f('notes',         (editClient.notes||[]).map(n=>n.text).join('\n'));
+      document.getElementById('referredBy').value    = editClient.referredBy    || '';
+      document.getElementById('commissionPct').value = editClient.commissionPct || '';
+      // check services
+      document.querySelectorAll('.svc-check').forEach(cb => {
+        if ((editClient.services||[]).includes(cb.value)) cb.checked = true;
+      });
+    }
+  }
+
+  updatePreview();
+}
+
+init();
+</script>
+</body>
+</html>

@@ -1001,14 +1001,15 @@ body.ar .contact-info h2 {
 .partners-track-wrap {
   overflow: hidden;
   width: 100%;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  background: var(--ivory);
+  border-radius: 20px;
+  padding: 28px 0;
 }
 
 .partners-track {
   display: flex;
   align-items: center;
-  gap: 90px;
+  gap: 70px;
   width: max-content;
   animation: partnersScroll 20s linear infinite;
 }
@@ -1018,15 +1019,13 @@ body.ar .contact-info h2 {
 }
 
 .partners-track img {
-  height: 56px;
+  height: 60px;
   width: auto;
   object-fit: contain;
-  opacity: 0.85;
-  transition: opacity 0.3s, transform 0.3s;
+  transition: transform 0.3s;
 }
 
 .partners-track img:hover {
-  opacity: 1;
   transform: scale(1.08);
 }
 

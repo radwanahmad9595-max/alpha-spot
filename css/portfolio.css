@@ -409,3 +409,19 @@ body.ar .modal-body h2 {
   .filter-bar { padding: 0 20px 40px; }
   .modal-body { padding: 24px 20px; }
 }
+
+/* Touch devices have no :hover — always show the overlay so project
+   info and the "View Project" button stay reachable. */
+@media (hover: none) {
+  .port-img-wrap {
+    aspect-ratio: auto;
+    height: 180px;
+    overflow: visible;
+  }
+  .port-overlay {
+    opacity: 1;
+    position: static;
+    background: none;
+    padding: 20px 22px;
+  }
+}

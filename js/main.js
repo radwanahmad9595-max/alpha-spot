@@ -59,18 +59,24 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 // ── MOBILE MENU ──
 function toggleMenu() {
-  const links = document.querySelector('.nav-links');
-  const isOpen = links.style.display === 'flex';
-  links.style.display = isOpen ? 'none' : 'flex';
-  links.style.flexDirection = 'column';
-  links.style.position = 'absolute';
-  links.style.top = '70px';
-  links.style.left = '0';
-  links.style.right = '0';
-  links.style.background = 'rgba(10,17,25,0.98)';
-  links.style.padding = '20px 30px';
-  links.style.borderBottom = '1px solid rgba(242,169,59,0.15)';
+  document.querySelector('.nav-links').classList.toggle('mobile-open');
 }
+
+function closeMenu() {
+  document.querySelector('.nav-links').classList.remove('mobile-open');
+}
+
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', closeMenu);
+});
+
+document.addEventListener('click', e => {
+  const links = document.querySelector('.nav-links');
+  const toggle = document.querySelector('.menu-toggle');
+  if (links.classList.contains('mobile-open') && !links.contains(e.target) && !toggle.contains(e.target)) {
+    closeMenu();
+  }
+});
 
 // ── SCROLL ANIMATIONS ──
 const observer = new IntersectionObserver(entries => {

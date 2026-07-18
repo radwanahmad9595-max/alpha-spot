@@ -1009,13 +1009,26 @@ body.ar .contact-info h2 {
 .partners-track {
   display: flex;
   align-items: center;
-  gap: 70px;
   width: max-content;
   animation: partnersScroll 20s linear infinite;
 }
 
 .partners-track:hover {
   animation-play-state: paused;
+}
+
+.partners-set {
+  display: flex;
+  align-items: center;
+}
+
+/* Spacing lives on each logo (not on a flex `gap`) so every gap in the
+   strip — including the seam between the two duplicated sets — is
+   identical. That's what makes the -50% loop below perfectly seamless. */
+.partner-logo {
+  display: flex;
+  align-items: center;
+  padding-right: 70px;
 }
 
 .partners-track img {

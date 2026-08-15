@@ -1,11 +1,19 @@
 // ── LANGUAGE ──
-let currentLang = 'en';
+// Persisted across pages/navigation so the user's choice sticks (localStorage),
+// instead of silently resetting to English on every page load.
+let currentLang = localStorage.getItem('as_lang') || 'en';
 
 function toggleLang() {
   currentLang = currentLang === 'en' ? 'ar' : 'en';
+  localStorage.setItem('as_lang', currentLang);
+  applyLangState();
+}
+
+function applyLangState() {
   document.documentElement.lang = currentLang;
   document.body.classList.toggle('ar', currentLang === 'ar');
-  document.getElementById('langBtn').textContent = currentLang === 'en' ? 'عربي' : 'EN';
+  const btn = document.getElementById('langBtn');
+  if (btn) btn.textContent = currentLang === 'en' ? 'عربي' : 'EN';
   applyLang();
 }
 
@@ -22,6 +30,8 @@ function applyLang() {
     }
   });
 }
+
+applyLangState();
 
 // ── NAVBAR SCROLL ──
 const navbar = document.getElementById('navbar');

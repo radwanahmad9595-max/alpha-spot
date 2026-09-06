@@ -1042,6 +1042,10 @@ body.ar .contact-info h2 {
   border-radius: 20px;
   padding: 44px 0;
   box-shadow: 0 24px 60px -34px rgba(0, 0, 0, 0.55);
+  /* Keep the marquee left-to-right even when the page is RTL (Arabic),
+     otherwise the track is positioned from the right and scrolls itself
+     out of view after one loop. */
+  direction: ltr;
 }
 
 /* Soft ivory fade so logos ease in/out at the strip edges */

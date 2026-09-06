@@ -1061,6 +1061,10 @@ body.ar .contact-info h2 {
   padding-right: 70px;
 }
 
+a.partner-logo {
+  text-decoration: none;
+}
+
 .partners-track img {
   height: 60px;
   width: auto;

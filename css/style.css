@@ -9,6 +9,7 @@
   --gold:       #F2A93B;
   --gold-light: #FF9D2E;
   --ivory:      #F4EFE5;
+  --baby-blue:  #8FD3F4;
   --white:      #ffffff;
   --muted:      #7a8fa6;
   --border:     rgba(242,169,59,0.15);
@@ -1028,19 +1029,46 @@ body.ar .contact-info h2 {
   padding-bottom: 60px;
 }
 
+/* Baby-blue eyebrow tag, scoped to this section only */
+#partners .section-tag {
+  color: var(--baby-blue);
+}
+
 .partners-track-wrap {
+  position: relative;
   overflow: hidden;
   width: 100%;
   background: var(--ivory);
   border-radius: 20px;
-  padding: 28px 0;
+  padding: 44px 0;
+  box-shadow: 0 24px 60px -34px rgba(0, 0, 0, 0.55);
+}
+
+/* Soft ivory fade so logos ease in/out at the strip edges */
+.partners-track-wrap::before,
+.partners-track-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 110px;
+  z-index: 2;
+  pointer-events: none;
+}
+.partners-track-wrap::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--ivory), rgba(244, 239, 229, 0));
+}
+.partners-track-wrap::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--ivory), rgba(244, 239, 229, 0));
 }
 
 .partners-track {
   display: flex;
   align-items: center;
   width: max-content;
-  animation: partnersScroll 20s linear infinite;
+  animation: partnersScroll 30s linear infinite;
 }
 
 .partners-track:hover {
@@ -1054,11 +1082,15 @@ body.ar .contact-info h2 {
 
 /* Spacing lives on each logo (not on a flex `gap`) so every gap in the
    strip — including the seam between the two duplicated sets — is
-   identical. That's what makes the -50% loop below perfectly seamless. */
+   identical. That's what makes the -50% loop below perfectly seamless.
+   A fixed cell height keeps logos of different aspect ratios optically
+   aligned. */
 .partner-logo {
   display: flex;
   align-items: center;
-  padding-right: 70px;
+  justify-content: center;
+  height: 96px;
+  padding-right: 88px;
 }
 
 a.partner-logo {
@@ -1066,14 +1098,16 @@ a.partner-logo {
 }
 
 .partners-track img {
-  height: 60px;
+  height: auto;
+  max-height: 88px;
   width: auto;
+  max-width: 230px;
   object-fit: contain;
-  transition: transform 0.3s;
+  transition: transform 0.35s ease;
 }
 
 .partners-track img:hover {
-  transform: scale(1.08);
+  transform: scale(1.07);
 }
 
 @keyframes partnersScroll {
